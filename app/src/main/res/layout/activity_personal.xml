@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.personal_center.PersonalActivity">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:divider="@drawable/shape_line"
+        app:showDividers="middle"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:background="@color/colorWhite"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            >
+
+            <ImageView
+                android:id="@+id/per_line_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pep_history_money"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/per_line_one"
+                android:textColor="@color/color_666666"
+                android:textSize="30px"
+                android:layout_toRightOf="@id/per_line_one"
+                android:layout_marginLeft="20px"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/send_place_in"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:background="@color/colorWhite"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            >
+
+            <ImageView
+                android:id="@+id/per_line_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/online_service"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/per_line_two"
+                android:textColor="@color/color_666666"
+                android:textSize="30px"
+                android:layout_toRightOf="@id/per_line_two"
+                android:layout_marginLeft="20px"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/per_line_two_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/send_place_in"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/per_line_time"
+                android:textSize="25px"
+                android:textColor="@color/color_999999"
+                android:layout_toLeftOf="@id/per_line_two_in"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20px"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:background="@color/colorWhite"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            >
+
+            <ImageView
+                android:id="@+id/per_line_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pep_history_money"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/per_line_three"
+                android:textColor="@color/color_666666"
+                android:textSize="30px"
+                android:layout_toRightOf="@id/per_line_three"
+                android:layout_marginLeft="20px"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/send_place_in"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+        
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/colorWhite"
+        android:text="@string/per_exit_logon"
+        android:gravity="center"
+        android:textColor="@color/color_DB5544"
+        android:textSize="30px"
+        android:layout_marginTop="30px"
+        />
+
+</LinearLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.sendmoney.SearchSiteActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/search_site_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/search_site_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_site_back"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/search_site_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:textColor="@color/color_666666"
+                android:textSize="28px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30px"
+                />
+
+            <EditText
+                android:id="@+id/search_site_edit"
+                android:layout_width="match_parent"
+                android:layout_height="60px"
+                android:layout_toRightOf="@id/search_site_back"
+                android:layout_toLeftOf="@id/search_site_confirm"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_fillet_eeeeee_30"
+                android:paddingLeft="20px"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="20px"
+                android:hint="@string/search_edit_hint"
+                android:textSize="28px"
+                android:textColor="@color/color_999999"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RadioGroup
+        android:id="@+id/search_site_range"
+        android:layout_below="@id/search_site_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="50px"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_range_tv"
+            android:textColor="@color/color_333333"
+            android:textSize="32px"
+            />
+
+        <RadioButton
+            android:id="@+id/search_site_range_kilometre"
+            android:layout_width="150px"
+            android:layout_height="58px"
+            android:button="@null"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/selecter_search_range_bt"
+            android:text="@string/search_range_one"
+            android:textColor="@color/color_search_range"
+            android:gravity="center"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/search_site_range_county"
+            android:layout_width="150px"
+            android:layout_height="58px"
+            android:button="@null"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/selecter_search_range_bt"
+            android:text="@string/search_range_two"
+            android:gravity="center"
+            android:textColor="@color/color_search_range"
+            />
+
+        <RadioButton
+            android:id="@+id/search_site_range_city"
+            android:layout_width="150px"
+            android:layout_height="58px"
+            android:button="@null"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/selecter_search_range_bt"
+            android:text="@string/search_range_three"
+            android:gravity="center"
+            android:textColor="@color/color_search_range"
+            />
+
+    </RadioGroup>
+    
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_site_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:layout_alignParentBottom="true"
+        ></android.support.v7.widget.RecyclerView>
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/search_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_site_range"
+        android:layout_above="@id/search_site_recycler"
+        ></com.amap.api.maps.MapView>
+    
+</RelativeLayout>

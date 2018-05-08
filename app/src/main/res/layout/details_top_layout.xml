@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/details_title"
+        />
+
+    <TextView
+        android:id="@+id/details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/details_title"
+        android:textSize="36px"
+        android:textColor="@color/color_FFFFFF"
+        android:layout_marginTop="40px"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/details_icon"
+        android:layout_width="112px"
+        android:layout_height="112px"
+        android:background="@drawable/open_pack_icon"
+        android:layout_below="@id/details_title"
+        android:layout_marginTop="50px"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/details_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平台红包"
+        android:textSize="30px"
+        android:textColor="@color/color_333333"
+        android:layout_marginTop="20px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/details_icon"
+        />
+
+    <TextView
+        android:id="@+id/details_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_fillet_fae3b7_15"
+        android:text="全国"
+        android:textSize="22px"
+        android:textColor="@color/color_D7593F"
+        android:layout_marginTop="30px"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/details_name"
+        android:layout_alignBottom="@id/details_name"
+        />
+
+    <TextView
+        android:id="@+id/details_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.080170"
+        android:textColor="@color/color_333333"
+        android:textSize="80px"
+        android:textStyle="bold"
+        android:layout_below="@id/details_name"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/details_yuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="元"
+        android:textColor="@color/color_333333"
+        android:textSize="30px"
+        android:layout_toRightOf="@id/details_money"
+        android:layout_alignBottom="@id/details_money"
+        />
+
+    <TextView
+        android:id="@+id/details_shares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/details_pap"
+        android:layout_toRightOf="@id/details_money"
+        android:layout_above="@id/details_yuan"
+        android:text="+.02027红包股"
+        android:textSize="22px"
+        android:textColor="@color/color_F9E1B5"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/details_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已存入钱包"
+        android:textColor="@color/color_606F95"
+        android:textSize="30px"
+        android:layout_marginTop="10px"
+        android:layout_below="@id/details_money"
+        android:layout_centerHorizontal="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+         android:layout_below="@id/details_wallet"
+        android:layout_marginTop="20px"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/details_imgs_recycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/details_receive_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="…12000000+人领取"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

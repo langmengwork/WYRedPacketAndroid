@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="26px"
+        android:focusableInTouchMode="true"
+        >
+        <EditText
+            android:id="@+id/send_edit_word"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:background="@null"
+            android:hint="@string/send_edit_word_one"
+            android:gravity="top"
+            android:textSize="30px"
+            android:maxEms="300"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/send_add_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/send_img_preview"
+                android:layout_width="172px"
+                android:layout_height="60px"
+                android:background="@drawable/shape_fillet_f4f4f4_10"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/send_blessing_search"
+                    android:layout_marginRight="10px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预览效果"
+                    android:textSize="26px"
+                    android:textColor="@color/color_999999"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_line"
+            android:layout_marginTop="40px"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="92px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:layout_marginBottom="10px"
+            android:background="@drawable/shape_fillet_f4f4f4_10"
+            android:layout_marginTop="30px"
+            >
+
+            <TextView
+                android:id="@+id/send_edit_oa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_edit_oa"
+                android:textSize="30px"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/send_edit_ob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_edit_ob"
+                android:textSize="30px"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+            <EditText
+                android:id="@+id/send_edit_money"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center"
+                android:background="@null"
+                android:layout_toRightOf="@id/send_edit_oa"
+                android:layout_toLeftOf="@id/send_edit_ob"
+                android:layout_marginRight="30px"
+                android:textSize="30px"
+                android:hint="@string/send_edit_money"
+                android:digits="0123456789."
+                android:maxLines="1"
+                android:inputType="number"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_tips_one"
+            android:textSize="24px"
+            android:textColor="@color/color_999999"
+            android:layout_marginLeft="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="92px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:layout_marginBottom="10px"
+            android:background="@drawable/shape_fillet_f4f4f4_10"
+            android:layout_marginTop="30px"
+            >
+
+            <TextView
+                android:id="@+id/send_edit_ma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_edit_ma"
+                android:textSize="30px"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/send_edit_mb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_edit_mb"
+                android:textSize="30px"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+            <EditText
+                android:id="@+id/send_edit_much"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center"
+                android:background="@null"
+                android:layout_toRightOf="@id/send_edit_ma"
+                android:layout_toLeftOf="@id/send_edit_mb"
+                android:layout_marginRight="30px"
+                android:textSize="30px"
+                android:hint="@string/send_edit_much"
+                android:digits="0123456789."
+                android:maxLines="1"
+                android:inputType="number"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_tips_two"
+            android:textSize="24px"
+            android:textColor="@color/color_999999"
+            android:layout_marginLeft="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="92px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:layout_marginBottom="10px"
+            android:background="@drawable/shape_fillet_f4f4f4_10"
+            android:layout_marginTop="30px"
+            >
+
+            <TextView
+                android:id="@+id/send_edit_pa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_edit_pa"
+                android:textSize="30px"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/send_search_site_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/send_range_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30px"
+                    android:textSize="30px"
+                    android:text="@string/search_range_one"
+                    />
+
+                <ImageView
+                    android:id="@+id/send_edit_pb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/send_place_in"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/send_range_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24px"
+            android:textColor="@color/color_999999"
+            android:layout_marginLeft="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50px"
+            >
+
+            <CheckBox
+                android:id="@+id/send_check_encryption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_check_encryption"
+                android:button="@null"
+                android:background="@null"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/selecter_send_checbox"
+                android:drawablePadding="20px"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/send_checkbox_doubt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/send_doubt"
+                android:layout_toRightOf="@id/send_check_encryption"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/send_encryption_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_encryption_modify"
+                android:textSize="30px"
+                android:textColor="@color/color_6C7BBE"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/send_encryption_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1234"
+                android:textSize="42px"
+                android:textColor="@color/color_333333"
+                android:textStyle="bold"
+                android:layout_toLeftOf="@id/send_encryption_modify"
+                android:layout_marginRight="30px"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/send_money_bt"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="塞钱进红包"
+            android:textSize="35px"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:background="@drawable/shape_fillet_db5544_44"
+            android:layout_marginTop="72px"
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

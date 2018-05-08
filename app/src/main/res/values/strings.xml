@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">同城红包</string>
+    <string name="clauseStr">登录即表示同意用户协议</string>
+    <string name="map_expand_layout">1000米\n扩张收红包范围</string>
+    <string name="map_advert_layout">下一个广告红包</string>
+    <string name="send_edit_oa">总金额</string>
+    <string name="send_edit_ob">元</string>
+    <string name="send_edit_ma">红包个数</string>
+    <string name="send_edit_mb">个</string>
+    <string name="send_edit_pa">位置/范围</string>
+    <string name="send_edit_money">输入金额</string>
+    <string name="send_edit_much">填写个数</string>
+    <string name="send_tips_one">附近的人可随机领取该红包</string>
+    <string name="send_tips_two">最多可让附近的人领取的红包个数</string>
+    <string name="send_check_encryption">红包加密（选填项）</string>
+    <string name="send_encryption_modify">修改</string>
+    <string name="send_edit_word_one">你想对大家说...</string>
+    <string name="send_edit_word_two">你想对大家说...(最多27字)</string>
+    <string name="send_tab_one">发广播</string>
+    <string name="send_tab_two">发祝福</string>
+    <string name="per_line_one">红包动态</string>
+    <string name="per_line_two">在线客服</string>
+    <string name="per_line_three">意见反馈</string>
+    <string name="per_line_time">工作日：9:00-18:30</string>
+    <string name="per_exit_logon">退出账号</string>
+    <string name="search_edit_hint">搜索地点</string>
+    <string name="search_range_tv">发布范围</string>
+    <string name="search_range_one">一公里</string>
+    <string name="search_range_two">全区/县</string>
+    <string name="search_range_three">全市</string>
+    <string name="please_edit">请输入密码</string>
+    <string name="details_title">红包信息</string>
+    <string name="details_hint">发表伟大言论…</string>
+</resources>

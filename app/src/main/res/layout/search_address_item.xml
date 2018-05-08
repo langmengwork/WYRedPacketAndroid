@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/search_address_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120px"
+    android:paddingLeft="40px"
+    android:paddingRight="40px"
+    android:paddingTop="10px"
+    android:paddingBottom="10px"
+    >
+
+    <ImageView
+        android:id="@+id/search_address_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="40px"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/search_address_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="红马奥大厦"
+        android:textColor="@color/color_333333"
+        android:textSize="30px"
+        android:layout_toRightOf="@id/search_address_state"
+        />
+
+    <TextView
+        android:id="@+id/search_address_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="达拉斯打发斯蒂芬"
+        android:textColor="@color/color_333333"
+        android:textSize="25px"
+        android:layout_toRightOf="@id/search_address_state"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/search_address_name"
+        android:layout_marginTop="10px"
+        />
+
+
+</RelativeLayout>

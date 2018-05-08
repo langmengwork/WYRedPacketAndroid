@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/reply_icon_item"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/open_pack_icon"
+        />
+
+    <TextView
+        android:id="@+id/reply_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="珍惜眼前人"
+        android:textSize="15dp"
+        android:textColor="@color/color_606F95"
+        android:layout_toRightOf="@id/reply_icon_item"
+        android:layout_alignTop="@id/reply_icon_item"
+        />
+
+    <TextView
+        android:id="@+id/reply_content_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好人一生平安！"
+        android:textSize="13dp"
+        android:textColor="@color/color_333333"
+        android:layout_toRightOf="@id/reply_icon_item"
+        android:layout_alignBottom="@id/reply_icon_item"
+        />
+    
+    <LinearLayout
+        android:id="@+id/reply_sl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/reply_icon_item"
+        android:layout_below="@id/reply_content_item"
+        android:layout_marginTop="13dp"
+        android:background="@color/color_F7F7F7"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/reply_sl_name_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="红妆淡抹"
+            android:textSize="15dp"
+            android:textColor="@color/color_5782B2"
+            />
+
+        <TextView
+            android:id="@+id/reply_sl_content_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="：平安！"
+            android:textSize="15dp"
+            android:textColor="@color/color_666666"
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/reply_sl_count_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共2条回复>"
+            android:textSize="15dp"
+            android:textColor="@color/color_5782B2"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/reply_time_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4分钟"
+        android:textSize="11dp"
+        android:textColor="@color/color_999999"
+        android:layout_toRightOf="@id/reply_icon_item"
+        android:layout_below="@id/reply_sl_layout"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        />
+
+</RelativeLayout>

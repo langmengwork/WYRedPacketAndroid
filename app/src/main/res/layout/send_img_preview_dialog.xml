@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    >
+
+    <ImageView
+        android:id="@+id/preview_dialog_up"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:background="@drawable/preview_dialog_up"
+        />
+
+    <RelativeLayout
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        >
+
+        <ImageView
+            android:id="@+id/preview_dialog_img"
+            android:layout_width="match_parent"
+            android:layout_height="600px"
+            android:scaleType="fitXY"
+            android:layout_centerHorizontal="true"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/preview_dialog_inner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30px"
+            android:paddingTop="150px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            >
+
+            <TextView
+                android:id="@+id/preview_dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdfsadf"
+                android:textColor="@color/color_FFFFFF"
+                android:textSize="36px"
+                />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/preview_dialog_bottom"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/preview_dialog_up"
+        android:layout_marginTop="-150px"
+        android:background="@drawable/preview_dialog_bottom" >
+
+        <ImageView
+            android:id="@+id/preview_dialog_flower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/preview_dialog_flower"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30px"
+            />
+
+        <TextView
+            android:id="@+id/preview_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收到红妆淡抹的祝福红包"
+            android:textSize="28px"
+            android:textColor="@color/color_DDB68E"
+            android:layout_below="@id/preview_dialog_flower"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20px"
+            />
+
+        <TextView
+            android:id="@+id/preview_money_much"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.00"
+            android:textColor="@color/color_DDB68E"
+            android:textSize="80px"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/preview_sender"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/preview_money_much"
+            android:text="元"
+            android:textSize="30px"
+            android:layout_marginBottom="20px"
+            android:textColor="@color/color_FBE3B8"
+            android:layout_alignBottom="@id/preview_money_much"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/preview_dialog_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/preview_dialog_finish"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/preview_dialog_bottom"
+        android:layout_marginTop="80px"
+        />
+
+</RelativeLayout>

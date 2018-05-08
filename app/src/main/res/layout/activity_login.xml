@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".ui.activity.LoginActivity">
+
+    <com.youth.banner.Banner
+        android:id="@+id/login_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.youth.banner.Banner>
+
+    <LinearLayout
+        android:id="@+id/login_bt"
+        android:layout_width="410px"
+        android:layout_height="88px"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="124px"
+        android:gravity="center"
+        android:background="@drawable/shape_fillet_ffffff_45"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/weixinlogo"
+            android:layout_marginRight="21px"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信登录"
+            android:textSize="42px"
+            android:textColor="@color/colorBlack"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login_clause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clauseStr"
+        android:textSize="28px"
+        android:textColor="@color/colorWhite"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/login_bt"
+        android:layout_marginBottom="10px"
+        />
+
+</RelativeLayout>
