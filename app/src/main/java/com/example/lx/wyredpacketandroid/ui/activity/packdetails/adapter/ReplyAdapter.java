@@ -1,6 +1,7 @@
 package com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.ReplyDetailActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.MessageListEntity;
 
 import java.util.List;
@@ -23,20 +25,28 @@ public class ReplyAdapter extends RecyclerView.Adapter {
 
     private List<MessageListEntity.DataBean>  list;
 
-    public ReplyAdapter(Context context, List<MessageListEntity.DataBean> list) {
+    private String pack_id;
+
+    public ReplyAdapter(Context context, List<MessageListEntity.DataBean> list, String pack_id) {
 
         this.context = context;
         this.list = list;
+        this.pack_id = pack_id;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.reply_show_item, null));
+
+        View view = LayoutInflater.from(context).inflate(R.layout.reply_show_item, null);
+
+        view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
         MyViewHolder ho = (MyViewHolder) holder;
         Glide.with(context).load(list.get(position).getHeadimgurl()).into(ho.reply_icon_item);
@@ -44,8 +54,19 @@ public class ReplyAdapter extends RecyclerView.Adapter {
         ho.reply_content_item.setText(list.get(position).getContent());
         ho.reply_time_item.setText(list.get(position).getCreated_at());
 
-        MessageListEntity.DataBean.ReturnMessageBean returnMessage = list.get(position).getReturnMessage();
-        if (returnMessage != null) {
+        final MessageListEntity.DataBean.ReturnMessageBean returnMessage = list.get(position).getReturnMessage();
+
+        ho.reply_icon_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReplyDetailActivity.StartReplyDetailActivity(context,
+                        list.get(position).getId()+"",
+                        pack_id,
+                        returnMessage.getReturnMessageCount()+"");
+            }
+        });
+
+        if (returnMessage != null && returnMessage.getReturnMessageCount() > 0) {
 
             ho.reply_sl_layout.setVisibility(View.VISIBLE);
 
@@ -54,8 +75,17 @@ public class ReplyAdapter extends RecyclerView.Adapter {
                 ho.reply_sl_count_item.setVisibility(View.VISIBLE);
                 ho.reply_sl_content_item.setText("等人");
                 ho.reply_sl_count_item.setText("共" + returnMessage.getReturnMessageCount() + "条回复>");
+                ho.reply_sl_count_item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ReplyDetailActivity.StartReplyDetailActivity(context,
+                                list.get(position).getId()+"",
+                                pack_id,
+                                returnMessage.getReturnMessageCount()+"");
+                    }
+                });
             } else {
-                ho.reply_sl_content_item.setText("："+returnMessage.getContent());
+                ho.reply_sl_content_item.setText("：" + returnMessage.getContent());
             }
             ho.reply_sl_name_item.setText(returnMessage.getName());
         }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:divider="@drawable/shape_line"
+    app:showDividers="beginning|middle|end"
+    tools:context=".ui.activity.packdetails.ReplyDetailActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/reply_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_site_back"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/reply_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4条留言"
+                android:textSize="35px"
+                android:textColor="@color/color_333333"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        layout="@layout/reply_show_item" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50px"
+        >
+
+        <RelativeLayout
+            android:id="@+id/reply_detail_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorWhite"
+            >
+
+            <EditText
+                android:id="@+id/reply_detail_editer"
+                android:layout_width="600px"
+                android:layout_height="70px"
+                android:background="@drawable/shape_fillet_eeeeee_30"
+                android:layout_marginLeft="30px"
+                android:textSize="30px"
+                android:hint="@string/details_hint"
+                android:paddingLeft="20px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:imeOptions="actionSend"
+                android:singleLine="true"
+                android:maxEms="80"
+                />
+
+            <TextView
+                android:id="@+id/reply_detail_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30px"
+                android:text="发送"
+                android:textColor="@color/color_DB5443"
+                android:textSize="30px"
+                />
+
+        </RelativeLayout>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/reply_detail_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/reply_detail_bottom_bar"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/reply_detail_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                ></android.support.v7.widget.RecyclerView>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

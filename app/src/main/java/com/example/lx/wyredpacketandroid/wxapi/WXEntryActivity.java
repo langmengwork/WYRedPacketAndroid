@@ -9,6 +9,7 @@ import com.example.lx.wyredpacketandroid.base.MainApplication;
 import com.example.lx.wyredpacketandroid.mvp.contract.MainContract;
 import com.example.lx.wyredpacketandroid.mvp.presenter.MainPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.MainActivity;
+import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.ToastUtil;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -65,6 +66,8 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                         String code = ((SendAuth.Resp) resp).code;
 
                         presenter.obtainLogin(code);
+
+                        LogUtil.e("拿到code"+code);
 
                         break;
                     case RETURN_MSG_TYPE_SHARE:

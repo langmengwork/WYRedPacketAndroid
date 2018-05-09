@@ -21,17 +21,19 @@
             android:paddingLeft="20px"
             android:layout_marginTop="20px"
             android:layout_marginBottom="20px"
+            android:imeOptions="actionSend"
+            android:singleLine="true"
+            android:maxEms="80"
             />
 
-        <CheckBox
+        <ImageView
             android:id="@+id/reply_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@null"
-            android:background="@drawable/selecter_checkbox_like"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="30px"
+            android:background="@drawable/like_noclick"
             />
 
     </RelativeLayout>
@@ -40,16 +42,17 @@
         android:id="@+id/reply_refresh"
         android:layout_above="@id/reply_bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="300px">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reply_recycler"
             android:layout_width="match_parent"
-            android:layout_height="300px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
             ></android.support.v7.widget.RecyclerView>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
     <RelativeLayout
         android:id="@+id/reply_bar"

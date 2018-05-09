@@ -34,7 +34,16 @@ public class UrlUtil {
     //订单查询
     public static final String ORDERQUERY = "orderquery";
 
-    //一级留言详情
+    //一级留言
     public static final String MESSAGELIST = "messageList";
+
+    //添加留言
+    public static final String MESSAGE = "message";
+
+    //点赞
+    public static final String PRAISE = "praise";
+
+    //二级留言
+    public static final String WITHDRAWLOG = "withdrawLog";
 
 }

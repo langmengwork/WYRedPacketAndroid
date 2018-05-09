@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    >
+
+    <ImageView
+        android:id="@+id/sl_reply_icon_item"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/open_pack_icon"
+        />
+
+    <TextView
+        android:id="@+id/sl_reply_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="珍惜眼前人"
+        android:textSize="15dp"
+        android:textColor="@color/color_606F95"
+        android:layout_toRightOf="@id/sl_reply_icon_item"
+        android:layout_alignTop="@id/sl_reply_icon_item"
+        />
+
+    <TextView
+        android:id="@+id/sl_reply_time_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.18.11.22"
+        android:textSize="11dp"
+        android:textColor="@color/color_999999"
+        android:layout_toRightOf="@id/sl_reply_icon_item"
+        android:layout_alignBottom="@id/sl_reply_icon_item"
+        />
+
+
+    <TextView
+        android:id="@+id/sl_reply_content_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4分钟"
+        android:textSize="15dp"
+        android:textColor="@color/color_333333"
+        android:layout_toRightOf="@id/sl_reply_icon_item"
+        android:layout_below="@id/sl_reply_time_item"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        />
+
+</RelativeLayout>

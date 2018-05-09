@@ -37,6 +37,8 @@ public class MainModel implements MainContract.Model{
         map.put("access_token", "");
         map.put("refresh_token", "");
 
+        LogUtil.e("到达"+map.toString());
+
         RetrofitUtil.instance().postJson(UrlUtil.URL_LOGIN, map, LoginEntity.class, new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -55,12 +57,14 @@ public class MainModel implements MainContract.Model{
                     UserToken unique = dao.queryBuilder().build().unique();
 
                     if (unique != null) {
+                        LogUtil.e("修改表单");
                         //修改表单
                         unique.setOpenid(entity.getData().getOpenid());
                         unique.setAccess_token(entity.getData().getAccess_token());
                         unique.setRefresh_token(entity.getData().getRefresh_token());
                         dao.update(unique);
                     } else {
+                        LogUtil.e("增加表单");
                         //增加表单
                         UserToken userToken = new UserToken();
                         userToken.setOpenid(entity.getData().getOpenid());
@@ -81,7 +85,7 @@ public class MainModel implements MainContract.Model{
             @Override
             public void onError(Throwable e) {
 
-                LogUtil.e(e.toString());
+                LogUtil.e("login失败："+e.toString());
             }
 
             @Override
@@ -180,7 +184,6 @@ public class MainModel implements MainContract.Model{
                     instance.setProvince(data.getProvince());
                     instance.setSex(data.getSex());
 
-                    LogUtil.e("第一次"+instance.getId());
                 }
 
             }
@@ -212,6 +215,7 @@ public class MainModel implements MainContract.Model{
 
                 GetPackEntity entity = (GetPackEntity) value;
                 if (entity != null) {
+
                     presenter.sendGetPack(entity.getData());
                 }
             }
@@ -242,7 +246,6 @@ public class MainModel implements MainContract.Model{
 
                 OpenPackEntity entity = (OpenPackEntity) value;
 
-                LogUtil.e("code"+entity.getErr_code());
                 if (entity != null) {
                     if (entity.getErr_code().equals("200")) {
                         presenter.sendOpen(entity.getData());

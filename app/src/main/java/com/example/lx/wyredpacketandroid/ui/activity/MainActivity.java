@@ -9,6 +9,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
@@ -77,8 +81,9 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     private ImageView map_advert_img;
     private RelativeLayout map_advert_layout;
     private MapPresenter presenter;
-    private List<GetPackEntity.DataBean> markerList;
+    private List<GetPackEntity.DataBean.ListBean> markerList;
     private Bitmap makerBitmap;
+    private TextView map_title_money;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         map_history = (LinearLayout) findViewById(R.id.map_history);
         map_advert_img = (ImageView) findViewById(R.id.map_advert_img);
         map_advert_layout = (RelativeLayout) findViewById(R.id.map_advert_layout);
+        map_title_money = findViewById(R.id.map_title_money);
     }
 
     @Override
@@ -293,46 +299,6 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
                 startActivity(new Intent(this, PersonalActivity.class));
 
                 break;
-        }
-    }
-
-    @Override
-    public void showView(List<GetPackEntity.DataBean> data) {
-
-        markerList = data;
-
-        for (final GetPackEntity.DataBean datum : markerList) {
-//            //绘制覆盖物
-//            drawMaker(latLng);
-            GPSLocation gpsLocation = new GPSLocation();
-            gpsLocation.setLatitude(latLng.latitude);
-            gpsLocation.setLongitude(latLng.longitude);
-            GPSLocation loca = LocationUtils.GetRandomLocation(gpsLocation, distance);
-            LatLng markLatlng = new LatLng(loca.getLatitude(), loca.getLongitude());
-            MarkerOptions markerOption = new MarkerOptions();
-            markerOption.position(markLatlng);
-            markerOption.draggable(false);//设置Marker可拖动
-
-//            LogUtil.e("type："+datum.getType()+"  is:"+datum.isSecret());
-
-            //设置红包图标
-            if (datum.isSecret()) {
-                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.encryption_money);
-            } else if (datum.getType() == 1 || datum.getType() == 4) {
-                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ordinary_money);
-            } else if (datum.getType() == 2 || datum.getType() == 3) {
-                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.blessing_money);
-            }
-
-            markerOption.icon(BitmapDescriptorFactory.fromBitmap(makerBitmap));
-
-            // 将Marker设置为贴地显示，可以双指下拉地图查看效果
-            markerOption.setFlat(true);//设置marker平贴地图效果
-
-            aMap.addMarker(markerOption);
-
-            aMap.setOnMarkerClickListener(this);
-
         }
     }
 
@@ -378,5 +344,53 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         ToastUtil.showShortToast(error);
 
         marker.remove();
+    }
+
+    @Override
+    public void showView(GetPackEntity.DataBean data) {
+
+
+        markerList = data.getList();
+
+        //设置余额
+        String moneystr =  "¥"+data.getUserStock();
+        SpannableString spanString = new SpannableString(moneystr);
+        AbsoluteSizeSpan span = new AbsoluteSizeSpan(30);
+        spanString.setSpan(span, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        map_title_money.setText(spanString);
+
+        for (final GetPackEntity.DataBean.ListBean datum : markerList) {
+//            //绘制覆盖物
+//            drawMaker(latLng);
+            GPSLocation gpsLocation = new GPSLocation();
+            gpsLocation.setLatitude(latLng.latitude);
+            gpsLocation.setLongitude(latLng.longitude);
+            GPSLocation loca = LocationUtils.GetRandomLocation(gpsLocation, distance);
+            LatLng markLatlng = new LatLng(loca.getLatitude(), loca.getLongitude());
+            MarkerOptions markerOption = new MarkerOptions();
+            markerOption.position(markLatlng);
+            markerOption.draggable(false);//设置Marker可拖动
+
+//            LogUtil.e("type："+datum.getType()+"  is:"+datum.isSecret());
+
+            //设置红包图标
+            if (datum.isSecret()) {
+                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.encryption_money);
+            } else if (datum.getType() == 1 || datum.getType() == 4) {
+                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ordinary_money);
+            } else if (datum.getType() == 2 || datum.getType() == 3) {
+                makerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.blessing_money);
+            }
+
+            markerOption.icon(BitmapDescriptorFactory.fromBitmap(makerBitmap));
+
+            // 将Marker设置为贴地显示，可以双指下拉地图查看效果
+            markerOption.setFlat(true);//设置marker平贴地图效果
+
+            aMap.addMarker(markerOption);
+
+            aMap.setOnMarkerClickListener(this);
+
+        }
     }
 }

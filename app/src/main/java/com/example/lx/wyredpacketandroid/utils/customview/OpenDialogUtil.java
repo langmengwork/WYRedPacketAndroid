@@ -61,7 +61,7 @@ public class OpenDialogUtil implements View.OnClickListener, PasswordView.Passwo
     }
 
 
-    public void showDialog(Context context, GetPackEntity.DataBean entity, Marker marker) {
+    public void showDialog(Context context, GetPackEntity.DataBean.ListBean entity, Marker marker) {
 
         this.context = context;
         this.marker = marker;

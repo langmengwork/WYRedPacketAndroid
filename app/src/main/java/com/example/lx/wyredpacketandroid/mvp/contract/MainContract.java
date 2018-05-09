@@ -21,7 +21,7 @@ public interface MainContract {
 
     interface mapView extends BaseView {
 
-        void showView(List<GetPackEntity.DataBean> data);
+        void showView(GetPackEntity.DataBean data);
 
     }
 
@@ -73,7 +73,7 @@ public interface MainContract {
 
         public abstract void obtainGetPack(Map<String,String> map);
 
-        public abstract void sendGetPack(List<GetPackEntity.DataBean> data);
+        public abstract void sendGetPack(GetPackEntity.DataBean data);
 
     }
 

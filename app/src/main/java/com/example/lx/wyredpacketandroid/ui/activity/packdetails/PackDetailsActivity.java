@@ -1,10 +1,18 @@
 package com.example.lx.wyredpacketandroid.ui.activity.packdetails;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,36 +30,41 @@ import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.MessageL
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.contract.DetailsContract;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.presenter.DetailsPresenter;
 import com.example.lx.wyredpacketandroid.utils.CodeUtil;
+import com.example.lx.wyredpacketandroid.utils.LogUtil;
+import com.example.lx.wyredpacketandroid.utils.ToastUtil;
+import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
 import com.example.lx.wyredpacketandroid.utils.recycleviewutil.SpaceItemDecoration;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener,DetailsContract.View {
+public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener,DetailsContract.View, TextView.OnEditorActionListener {
 
 
     private TextView details_title;
     private ImageView details_icon;
     private TextView details_name, details_shares, details_region;
     private TextView details_money;
-    private TextView details_yuan;
     private TextView details_wallet;
     private RecyclerView details_imgs_recycle, reply_recycler;
     private TextView details_receive_num;
     private OpenPackEntity.DataBean detailsEntity;
     private EditText reply_editer;
-    private CheckBox reply_like;
+    private ImageView reply_like;
     private RelativeLayout reply_bottom_bar;
     private TextView reply_num;
     private RelativeLayout reply_bar;
     private SmartRefreshLayout reply_refresh;
     private DetailsPresenter presenter;
-    private List<MessageListEntity.DataBean> replyList;
+    private ArrayList<MessageListEntity.DataBean> replyList = new ArrayList<>();
     private ReplyAdapter replyAdapter = null;
+    private int page = 0;
+    private String type = "2";
 
     @Override
     protected void initData() {
@@ -68,14 +81,23 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         //设置标题
         details_name.setText(detailsEntity.getPackName());
 
-        //设置股数
-        details_shares.setText("+" + detailsEntity.getGushu() + "红包股");
-
         //设置范围
         details_region.setText(detailsEntity.getPackArea());
 
         //设置金额
-        details_money.setText(detailsEntity.getPackMoney() + "");
+
+        SpannableString spanString = new SpannableString(detailsEntity.getPackMoney());
+        if (detailsEntity.getPackMoney().equals(getResources().getString(R.string.hand_slow))) {
+            AbsoluteSizeSpan span = new AbsoluteSizeSpan(60);
+            spanString.setSpan(span, 0, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else {
+            AbsoluteSizeSpan span = new AbsoluteSizeSpan(30);
+            spanString.setSpan(span, detailsEntity.getPackMoney().length() - 1, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            //设置股数
+            details_shares.setText("+" + detailsEntity.getGushu() + "红包股");
+        }
+
+        details_money.setText(spanString);
 
         //设置领取人数
         details_receive_num.setText("…" + detailsEntity.getTotalUserNum() + "+人领取");
@@ -87,13 +109,16 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
     private void initReply() {
 
-        details_imgs_recycle.setHasFixedSize(true);
+        reply_recycler.setHasFixedSize(true);
 
-        details_imgs_recycle.setLayoutManager(new LinearLayoutManager(this));
+        reply_recycler.setLayoutManager(new LinearLayoutManager(this));
 
-        replyAdapter = new ReplyAdapter(this, replyList);
+        //添加Android自带的分割线
+        reply_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        details_imgs_recycle.setAdapter(replyAdapter);
+        replyAdapter = new ReplyAdapter(this, replyList,detailsEntity.getPack_id());
+
+        reply_recycler.setAdapter(replyAdapter);
 
         //留言总数
         reply_num.setText(detailsEntity.getMessageCount() + "");
@@ -125,8 +150,6 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         details_name.setOnClickListener(this);
         details_money = (TextView) findViewById(R.id.details_money);
         details_money.setOnClickListener(this);
-        details_yuan = (TextView) findViewById(R.id.details_yuan);
-        details_yuan.setOnClickListener(this);
         details_wallet = (TextView) findViewById(R.id.details_wallet);
         details_wallet.setOnClickListener(this);
         details_imgs_recycle = (RecyclerView) findViewById(R.id.details_imgs_recycle);
@@ -136,8 +159,8 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         details_shares = findViewById(R.id.details_shares);
         details_region = findViewById(R.id.details_region);
         reply_editer = (EditText) findViewById(R.id.reply_editer);
-        reply_editer.setOnClickListener(this);
-        reply_like = (CheckBox) findViewById(R.id.reply_like);
+        reply_editer.setOnEditorActionListener(this);
+        reply_like = (ImageView) findViewById(R.id.reply_like);
         reply_like.setOnClickListener(this);
         reply_bottom_bar = (RelativeLayout) findViewById(R.id.reply_bottom_bar);
         reply_bottom_bar.setOnClickListener(this);
@@ -154,9 +177,30 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         return R.layout.activity_pack_details;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+
+            case R.id.reply_like:
+
+                HashMap<String, String> map = new HashMap<>();
+                map.put("uid",UserInfoUtil.instance().getId()+"");
+                map.put("pack_id",detailsEntity.getPack_id());
+
+                if (type.equals("2")) {
+                    type = "1";
+                    map.put("type", type);
+                } else {
+                    type = "2";
+                    map.put("type", type);
+                }
+
+                presenter.obtainPraise(map);
+
+                break;
+        }
     }
 
     private void submit() {
@@ -172,12 +216,15 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
 
+
+        page++;
+        LogUtil.e("page"+page);
         HashMap<String, String> map = new HashMap<>();
         map.put("pack_id", detailsEntity.getPack_id() + "");
+        map.put("page", page + "");
         presenter.obtainLoadMore(map);
 
     }
@@ -185,9 +232,15 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void showLoadMore(List<MessageListEntity.DataBean> data) {
 
-        if (data.size() <= 0) {
+        reply_refresh.finishLoadMore();
 
+        if (data.size() <= 0 || data == null) {
+
+            reply_refresh.setNoMoreData(true);
+
+            return;
         }
+
         replyList.addAll(data);
 
         if (replyAdapter == null) {
@@ -201,7 +254,50 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
+    public void showAddReply(String msg) {
+
+        if (msg.equals("成功")) {
+            page = 0;
+            replyList.clear();
+            reply_refresh.setNoMoreData(false);
+            reply_refresh.autoLoadMore();
+        } else {
+            ToastUtil.showShortToast(msg);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void showPraise(int praiseNum) {
+
+        if (type.equals("1")) {
+            Glide.with(this).load(R.drawable.like_click).into(reply_like);
+        } else {
+            Glide.with(this).load(R.drawable.like_noclick).into(reply_like);
+        }
+    }
+
+    @Override
     public void onError(String error) {
 
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
+
+            submit();
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("uid", UserInfoUtil.instance().getId()+"");
+            map.put("pack_id", detailsEntity.getPack_id());
+//            map.put("pid", );
+            map.put("content", v.getText().toString());
+            presenter.obtainAddReply(map);
+
+            v.setText("");
+        }
+        return false;
     }
 }

@@ -31,4 +31,5 @@
     <string name="please_edit">请输入密码</string>
     <string name="details_title">红包信息</string>
     <string name="details_hint">发表伟大言论…</string>
+    <string name="hand_slow">手慢了，红包派完了</string>
 </resources>

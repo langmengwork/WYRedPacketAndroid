@@ -29,8 +29,8 @@ public class MapPresenter extends MainContract.MapPresenter {
     }
 
     @Override
-    public void sendGetPack(List<GetPackEntity.DataBean> data) {
-
+    public void sendGetPack(GetPackEntity.DataBean data) {
         mView.showView(data);
     }
+
 }

@@ -68,16 +68,7 @@
         android:textStyle="bold"
         android:layout_below="@id/details_name"
         android:layout_centerHorizontal="true"
-        />
-    <TextView
-        android:id="@+id/details_yuan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="元"
-        android:textColor="@color/color_333333"
-        android:textSize="30px"
-        android:layout_toRightOf="@id/details_money"
-        android:layout_alignBottom="@id/details_money"
+        android:layout_marginTop="10px"
         />
 
     <TextView
@@ -86,7 +77,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/details_pap"
         android:layout_toRightOf="@id/details_money"
-        android:layout_above="@id/details_yuan"
+        android:layout_alignTop="@id/details_money"
         android:text="+.02027红包股"
         android:textSize="22px"
         android:textColor="@color/color_F9E1B5"

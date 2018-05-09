@@ -6,14 +6,22 @@ public class GetPackEntity {
 
 
     /**
+     * data : {"last_get_pack_time":1525752344000,"list":[{"id":29,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":3,"uid":1000000,"created_at":""},{"created_at":"","id":34,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":3,"uid":1000000},{"id":37,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":2,"uid":1000000},{"id":31,"logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","owner":"同城红包","secret":false,"type":4},{"id":31,"logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","owner":"同城红包","secret":false,"type":4}],"userStock":66.3801}
      * err_code : 200
      * return_msg : success
-     * data : [{"id":1,"type":2,"uid":1000000,"secret":true,"created_at":"1524653149000","owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":2,"type":2,"uid":1000000,"secret":false,"owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":3,"type":2,"uid":1000000,"secret":false,"owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":5,"type":2,"uid":1000000,"secret":true,"created_at":"1524658046000","owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":6,"type":2,"uid":1000000,"secret":true,"created_at":"1524659052000","owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":7,"type":2,"uid":1000000,"secret":true,"created_at":"1524659668000","owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":8,"type":2,"uid":1000000,"secret":false,"owner":"测试","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":11,"type":1,"uid":5000000,"secret":true,"created_at":"1524709421000","owner":"大宇宙银行","logo":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg"},{"id":4,"type":4,"owner":"同城红包","logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","secret":false},{"id":4,"type":4,"owner":"同城红包","logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","secret":false}]
      */
 
+    private DataBean data;
     private String err_code;
     private String return_msg;
-    private List<DataBean> data;
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
 
     public String getErr_code() {
         return err_code;
@@ -31,87 +39,115 @@ public class GetPackEntity {
         this.return_msg = return_msg;
     }
 
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
     public static class DataBean {
         /**
-         * id : 1
-         * type : 2
-         * uid : 1000000
-         * secret : true
-         * created_at : 1524653149000
-         * owner : 测试
-         * logo : https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg
+         * last_get_pack_time : 1525752344000
+         * list : [{"id":29,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":3,"uid":1000000},{"created_at":"","id":34,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":3,"uid":1000000},{"id":37,"logo":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","owner":"凭什么说","secret":false,"type":2,"uid":1000000},{"id":31,"logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","owner":"同城红包","secret":false,"type":4},{"id":31,"logo":"https://tongchenghongbao.yaxiangame.com/style/images/logo.jpg","owner":"同城红包","secret":false,"type":4}]
+         * userStock : 66.3801
          */
 
-        private int id;
-        private int type;
-        private int uid;
-        private boolean secret;
-        private String created_at;
-        private String owner;
-        private String logo;
+        private long last_get_pack_time;
+        private double userStock;
+        private List<ListBean> list;
 
-        public int getId() {
-            return id;
+        public long getLast_get_pack_time() {
+            return last_get_pack_time;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setLast_get_pack_time(long last_get_pack_time) {
+            this.last_get_pack_time = last_get_pack_time;
         }
 
-        public int getType() {
-            return type;
+        public double getUserStock() {
+            return userStock;
         }
 
-        public void setType(int type) {
-            this.type = type;
+        public void setUserStock(double userStock) {
+            this.userStock = userStock;
         }
 
-        public int getUid() {
-            return uid;
+        public List<ListBean> getList() {
+            return list;
         }
 
-        public void setUid(int uid) {
-            this.uid = uid;
+        public void setList(List<ListBean> list) {
+            this.list = list;
         }
 
-        public boolean isSecret() {
-            return secret;
-        }
+        public static class ListBean {
+            /**
+             * id : 29
+             * logo : http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132
+             * owner : 凭什么说
+             * secret : false
+             * type : 3
+             * uid : 1000000
+             * created_at :
+             */
 
-        public void setSecret(boolean secret) {
-            this.secret = secret;
-        }
+            private int id;
+            private String logo;
+            private String owner;
+            private boolean secret;
+            private int type;
+            private int uid;
+            private String created_at;
 
-        public String getCreated_at() {
-            return created_at;
-        }
+            public int getId() {
+                return id;
+            }
 
-        public void setCreated_at(String created_at) {
-            this.created_at = created_at;
-        }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-        public String getOwner() {
-            return owner;
-        }
+            public String getLogo() {
+                return logo;
+            }
 
-        public void setOwner(String owner) {
-            this.owner = owner;
-        }
+            public void setLogo(String logo) {
+                this.logo = logo;
+            }
 
-        public String getLogo() {
-            return logo;
-        }
+            public String getOwner() {
+                return owner;
+            }
 
-        public void setLogo(String logo) {
-            this.logo = logo;
+            public void setOwner(String owner) {
+                this.owner = owner;
+            }
+
+            public boolean isSecret() {
+                return secret;
+            }
+
+            public void setSecret(boolean secret) {
+                this.secret = secret;
+            }
+
+            public int getType() {
+                return type;
+            }
+
+            public void setType(int type) {
+                this.type = type;
+            }
+
+            public int getUid() {
+                return uid;
+            }
+
+            public void setUid(int uid) {
+                this.uid = uid;
+            }
+
+            public String getCreated_at() {
+                return created_at;
+            }
+
+            public void setCreated_at(String created_at) {
+                this.created_at = created_at;
+            }
         }
     }
 }

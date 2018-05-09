@@ -240,6 +240,7 @@ public class RetrofitUtil<T> {
                     @Override
                     public T apply(ResponseBody responseBody) throws Exception {
 
+                        LogUtil.e(responseBody.string());
                         Gson gson = new Gson();
                         type = (T) gson.fromJson(responseBody.string(), (Class<Object>) t);
 
