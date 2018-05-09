@@ -69,6 +69,8 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
         //设置标题
         reply_detail_title.setText(getIntent().getStringExtra("count") + "条回复");
 
+        reply_detail_refresh.autoLoadMore();
+
     }
 
     @Override
@@ -127,7 +129,10 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
 
         reply_detail_refresh.finishLoadMore();
 
-        if (state) state = false; initInfo(data.getInfo());
+        if (state) {
+            state = false;
+            initInfo(data.getInfo());
+        }
 
         if (data.getList().size() <= 0 || data == null) {
 

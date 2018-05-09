@@ -14,7 +14,7 @@ public class MainPresenter extends MainContract.Presenter {
     @Override
     public void obtainLogin(String code) {
 
-        LogUtil.e("发送中");
+        LogUtil.e("发送中"+code);
         mModel.gainLogin(this,code);
     }
 

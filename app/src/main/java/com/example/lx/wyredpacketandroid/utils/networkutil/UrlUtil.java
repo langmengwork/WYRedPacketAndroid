@@ -10,6 +10,12 @@ public class UrlUtil {
     //域名
     public static final String URL_BASE = "https://tongchenghongbao.yaxiangame.com/";
 
+    //微信域名
+    public static final String URL_WX= "https://api.weixin.qq.com/";
+
+    //获取userinfo
+    public static final String WX_USERINFO= "sns/userinfo";
+
     //七牛云
     public static final String URL_QNIUYUN = "http://images.yaxiangame.com/";
 
@@ -44,6 +50,15 @@ public class UrlUtil {
     public static final String PRAISE = "praise";
 
     //二级留言
-    public static final String WITHDRAWLOG = "withdrawLog";
+    public static final String MESSAGEDETAIL = "messageDetail";
+
+    //红包领取详情
+    public static final String GETPACKLIST = "getPackList";
+
+    //我收到的红包
+    public static final String RECEIVELIST = "receiveList";
+
+    //我发的红包
+    public static final String SENDLIST = "sendList";
 
 }

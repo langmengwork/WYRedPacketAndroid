@@ -349,7 +349,6 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     @Override
     public void showView(GetPackEntity.DataBean data) {
 
-
         markerList = data.getList();
 
         //设置余额

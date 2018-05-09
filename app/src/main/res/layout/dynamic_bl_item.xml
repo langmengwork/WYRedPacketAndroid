@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    >
+
+    <ImageView
+        android:id="@+id/dynamic_bl_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/open_pack_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/dynamic_bl_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平台红包"
+        android:textSize="16dp"
+        android:textColor="@color/color_606F95"
+        android:layout_toRightOf="@id/dynamic_bl_icon"
+        android:layout_alignTop="@id/dynamic_bl_icon"
+        />
+
+    <ImageView
+        android:id="@+id/dynamic_bl_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/open_pack_icon"
+        android:layout_toRightOf="@id/dynamic_bl_icon"
+        android:layout_below="@id/dynamic_bl_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:id="@+id/dynamic_bl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每天都有好心情@@@@@@@@@@@@@"
+        android:textSize="14dp"
+        android:textColor="@color/color_666666"
+        android:layout_toRightOf="@id/dynamic_bl_img"
+        android:layout_alignTop="@id/dynamic_bl_img"
+        />
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:background="@drawable/shape_fillet_f4f4f4_10"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/dynamic_bl_img"
+        android:layout_alignBottom="@id/dynamic_bl_img"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_pack_icon"
+            android:layout_marginRight="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="祝福红包"
+            android:textColor="@color/color_999999"
+            android:textSize="11dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

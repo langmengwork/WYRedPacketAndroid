@@ -97,6 +97,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/details_imags_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -120,5 +121,23 @@
             />
 
     </LinearLayout>
+
+    <ViewStub
+        android:id="@+id/rb_show_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout="@layout/details_rb_show"
+        android:layout_below="@id/details_imags_layout"
+        android:layout_marginTop="25px"
+        />
+
+    <ViewStub
+        android:id="@+id/bl_show_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout="@layout/details_bl_show"
+        android:layout_below="@id/details_imags_layout"
+        android:layout_marginTop="25px"
+        />
 
 </RelativeLayout>

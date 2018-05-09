@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.personal_center.MoneyDynamicActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/details_title"
+        />
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/dynamic_tab"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        app:tl_textBold="true"
+        android:layout_marginTop="20dp"
+        app:tl_textSelectColor="@color/colorWhite"
+        app:tl_textUnselectColor="@color/colorWhite"
+        app:tl_textsize="18dp"
+        app:tl_indicator_width="20dp"
+        app:tl_indicator_color="@color/colorWhite"
+        ></com.flyco.tablayout.CommonTabLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dynamic_card"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/dynamic_tab"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/card_left_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.00"
+                    android:textSize="21dp"
+                    android:textColor="@color/color_333333"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/card_left_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="红包总金额(元)"
+                    android:textSize="13dp"
+                    android:textColor="@color/color_666666"
+                    android:layout_marginTop="10dp"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_line"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/card_rghit_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textSize="21dp"
+                    android:textColor="@color/color_333333"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/card_rghit_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="累计影响人"
+                    android:textSize="13dp"
+                    android:textColor="@color/color_666666"
+                    android:layout_marginTop="10dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/dynamic_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_below="@id/dynamic_card"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dynamic_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></android.support.v7.widget.RecyclerView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</RelativeLayout>

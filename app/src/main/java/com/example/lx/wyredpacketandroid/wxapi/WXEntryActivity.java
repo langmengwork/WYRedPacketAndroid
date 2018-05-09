@@ -21,15 +21,13 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
 
     private static final int RETURN_MSG_TYPE_LOGIN = 1;
     private static final int RETURN_MSG_TYPE_SHARE = 2;
-    private MainPresenter presenter;
+    private MainPresenter presenter = new MainPresenter(this);;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //如果没回调onResp，八成是这句没有写
         MainApplication.mWxApi.handleIntent(getIntent(), this);
-
-        presenter = new MainPresenter(this);
 
     }
 
@@ -43,6 +41,8 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
     //app发送消息给微信，处理返回消息的回调
     @Override
     public void onResp(BaseResp resp) {
+
+        LogUtil.e("到了这里"+resp.errCode+"__"+resp.getType());
 
         switch (resp.errCode) {
 
@@ -66,8 +66,6 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                         String code = ((SendAuth.Resp) resp).code;
 
                         presenter.obtainLogin(code);
-
-                        LogUtil.e("拿到code"+code);
 
                         break;
                     case RETURN_MSG_TYPE_SHARE:

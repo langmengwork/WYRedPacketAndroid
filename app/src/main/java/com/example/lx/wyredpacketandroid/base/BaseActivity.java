@@ -26,6 +26,12 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected void onResume() {
         super.onResume();
         MainApplication.activity = this;
+
+        initResume();
+    }
+
+    protected void initResume() {
+
     }
 
     @Override

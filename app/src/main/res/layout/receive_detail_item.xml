@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/receive_detail_icon_item"
+        android:layout_width="85px"
+        android:layout_height="85px"
+        android:background="@drawable/open_pack_icon"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="10px"
+        android:layout_marginRight="20px"
+        />
+
+    <TextView
+        android:id="@+id/receive_detail_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="冤大头"
+        android:textColor="@color/color_666666"
+        android:textSize="30px"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/receive_detail_icon_item"
+        />
+
+    <TextView
+        android:id="@+id/receive_detail_money_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+0.251元"
+        android:textColor="@color/color_333333"
+        android:textSize="40px"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        />
+
+
+</RelativeLayout>

@@ -21,7 +21,6 @@ public class MapPresenter extends MainContract.MapPresenter {
         mModel.gainUserInfo(this);
     }
 
-
     @Override
     public void obtainGetPack(Map<String, String> map) {
 

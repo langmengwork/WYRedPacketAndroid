@@ -54,40 +54,40 @@ public class ReplyAdapter extends RecyclerView.Adapter {
         ho.reply_content_item.setText(list.get(position).getContent());
         ho.reply_time_item.setText(list.get(position).getCreated_at());
 
-        final MessageListEntity.DataBean.ReturnMessageBean returnMessage = list.get(position).getReturnMessage();
-
         ho.reply_icon_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ReplyDetailActivity.StartReplyDetailActivity(context,
                         list.get(position).getId()+"",
                         pack_id,
-                        returnMessage.getReturnMessageCount()+"");
+                        list.get(position).getReturnMessage().getReturnMessageCount()+"");
             }
         });
 
-        if (returnMessage != null && returnMessage.getReturnMessageCount() > 0) {
+        if (list.get(position).getReturnMessage().getReturnMessageCount() > 0) {
 
             ho.reply_sl_layout.setVisibility(View.VISIBLE);
 
-            if (returnMessage.getReturnMessageCount() > 1) {
+            ho.reply_sl_name_item.setText(list.get(position).getReturnMessage().getName());
+
+            if (list.get(position).getReturnMessage().getReturnMessageCount() > 1) {
 
                 ho.reply_sl_count_item.setVisibility(View.VISIBLE);
                 ho.reply_sl_content_item.setText("等人");
-                ho.reply_sl_count_item.setText("共" + returnMessage.getReturnMessageCount() + "条回复>");
+                ho.reply_sl_count_item.setText("共" + list.get(position).getReturnMessage().getReturnMessageCount() + "条回复>");
                 ho.reply_sl_count_item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ReplyDetailActivity.StartReplyDetailActivity(context,
                                 list.get(position).getId()+"",
                                 pack_id,
-                                returnMessage.getReturnMessageCount()+"");
+                                list.get(position).getReturnMessage().getReturnMessageCount()+"");
                     }
                 });
             } else {
-                ho.reply_sl_content_item.setText("：" + returnMessage.getContent());
+                ho.reply_sl_content_item.setText("：" + list.get(position).getReturnMessage().getContent());
             }
-            ho.reply_sl_name_item.setText(returnMessage.getName());
+
         }
     }
 

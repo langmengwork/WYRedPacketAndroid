@@ -34,7 +34,7 @@
         android:textSize="13dp"
         android:textColor="@color/color_333333"
         android:layout_toRightOf="@id/reply_icon_item"
-        android:layout_alignBottom="@id/reply_icon_item"
+        android:layout_below="@id/reply_icon_item"
         />
     
     <LinearLayout

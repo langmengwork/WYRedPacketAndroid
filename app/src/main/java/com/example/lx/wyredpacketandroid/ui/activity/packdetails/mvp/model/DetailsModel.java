@@ -3,6 +3,7 @@ package com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.model;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.AddReplyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.MessageListEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.PraiseEntity;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.ReceiveDetailEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.SLReplyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.contract.DetailsContract;
 import com.example.lx.wyredpacketandroid.utils.networkutil.RetrofitUtil;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.http.Url;
 
 public class DetailsModel implements DetailsContract.Model {
     @Override
@@ -140,7 +142,7 @@ public class DetailsModel implements DetailsContract.Model {
     @Override
     public void gainReplyDetail(final DetailsContract.ReplyPresenter presenter, Map<String, String> map) {
 
-        RetrofitUtil.instance().post(UrlUtil.WITHDRAWLOG, map, SLReplyEntity.class, new Observer() {
+        RetrofitUtil.instance().post(UrlUtil.MESSAGEDETAIL, map, SLReplyEntity.class, new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -153,6 +155,36 @@ public class DetailsModel implements DetailsContract.Model {
 
                 if (entity != null) {
                     presenter.sendReplyDetail(entity.getData());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    @Override
+    public void gainReceiveDetail(final DetailsContract.ReceivePresenter presenter, Map<String, String> map) {
+
+        RetrofitUtil.instance().post(UrlUtil.GETPACKLIST, map, ReceiveDetailEntity.class, new Observer() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object value) {
+
+                ReceiveDetailEntity entity = (ReceiveDetailEntity) value;
+                if (entity.getData() != null) {
+                    presenter.sendReceiveDetail(entity.getData());
                 }
             }
 

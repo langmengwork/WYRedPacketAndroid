@@ -7,20 +7,84 @@
     android:orientation="vertical"
     tools:context=".ui.activity.personal_center.PersonalActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="450px"
+        android:background="@drawable/pep_title_bc"
+        >
+
+        <ImageView
+            android:id="@+id/pep_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_white"
+            android:layout_margin="30px"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pep_title"
+            android:textSize="36px"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30px"
+            />
+
+        <ImageView
+            android:id="@+id/pep_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/open_pack_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/pep_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pep_level"
+            android:textSize="26px"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/pep_icon"
+            android:layout_marginTop="10px"
+            />
+
+        <TextView
+            android:id="@+id/pep_id"
+            android:layout_width="170px"
+            android:layout_height="30px"
+            android:gravity="center"
+            android:text="ID:13854647"
+            android:textSize="22px"
+            android:textColor="@color/color_FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/pep_name"
+            android:background="@drawable/shape_fillet_db5544_44"
+            android:layout_marginTop="5px"
+            />
+
+
+    </RelativeLayout>
+
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:divider="@drawable/shape_line"
         app:showDividers="middle"
+        android:layout_marginTop="20px"
         >
 
         <RelativeLayout
+            android:id="@+id/pep_money_dynamic_layout"
             android:layout_width="match_parent"
-            android:layout_height="100px"
+            android:layout_height="60dp"
             android:background="@color/colorWhite"
-            android:paddingLeft="50px"
-            android:paddingRight="50px"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
             >
 
             <ImageView
@@ -36,9 +100,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/per_line_one"
                 android:textColor="@color/color_666666"
-                android:textSize="30px"
+                android:textSize="15dp"
                 android:layout_toRightOf="@id/per_line_one"
-                android:layout_marginLeft="20px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 />
 
@@ -53,11 +117,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/pep_service_layout"
             android:layout_width="match_parent"
-            android:layout_height="100px"
+            android:layout_height="60dp"
             android:background="@color/colorWhite"
-            android:paddingLeft="50px"
-            android:paddingRight="50px"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
             >
 
             <ImageView
@@ -73,9 +138,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/per_line_two"
                 android:textColor="@color/color_666666"
-                android:textSize="30px"
+                android:textSize="15dp"
                 android:layout_toRightOf="@id/per_line_two"
-                android:layout_marginLeft="20px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 />
 
@@ -92,21 +157,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/per_line_time"
-                android:textSize="25px"
+                android:textSize="13dp"
                 android:textColor="@color/color_999999"
                 android:layout_toLeftOf="@id/per_line_two_in"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20px"
+                android:layout_marginRight="10dp"
                 />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/pep_feedback_layout"
             android:layout_width="match_parent"
-            android:layout_height="100px"
+            android:layout_height="60dp"
             android:background="@color/colorWhite"
-            android:paddingLeft="50px"
-            android:paddingRight="50px"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
             >
 
             <ImageView
@@ -122,9 +188,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/per_line_three"
                 android:textColor="@color/color_666666"
-                android:textSize="30px"
+                android:textSize="15dp"
                 android:layout_toRightOf="@id/per_line_three"
-                android:layout_marginLeft="20px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 />
 
@@ -141,8 +207,9 @@
     </android.support.v7.widget.LinearLayoutCompat>
 
     <TextView
+        android:id="@+id/pep_exit_account"
         android:layout_width="match_parent"
-        android:layout_height="100px"
+        android:layout_height="60dp"
         android:background="@color/colorWhite"
         android:text="@string/per_exit_logon"
         android:gravity="center"

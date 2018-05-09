@@ -73,7 +73,9 @@
             android:label="@string/app_name"
             android:launchMode="singleTop" />
         <activity android:name=".ui.activity.packdetails.PackDetailsActivity" />
-        <activity android:name=".ui.activity.packdetails.ReplyDetailActivity"></activity>
+        <activity android:name=".ui.activity.packdetails.ReplyDetailActivity" />
+        <activity android:name=".ui.activity.packdetails.ReceiveDetailsActivity" />
+        <activity android:name=".ui.activity.personal_center.MoneyDynamicActivity"></activity>
     </application>
 
 </manifest>

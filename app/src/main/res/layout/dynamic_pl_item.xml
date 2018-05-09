@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/dynamic_pl_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/open_pack_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/dynamic_pl_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平台红包"
+        android:textSize="16dp"
+        android:textColor="@color/color_606F95"
+        android:layout_toRightOf="@id/dynamic_pl_icon"
+        android:layout_alignTop="@id/dynamic_pl_icon"
+        />
+
+    <TextView
+        android:id="@+id/dynamic_pl_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获得0.0002红包股"
+        android:textSize="14dp"
+        android:textColor="@color/color_666666"
+        android:layout_toRightOf="@id/dynamic_pl_icon"
+        android:layout_alignBottom="@id/dynamic_pl_icon"
+        />
+
+</RelativeLayout>

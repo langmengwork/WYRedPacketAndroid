@@ -32,4 +32,12 @@
     <string name="details_title">红包信息</string>
     <string name="details_hint">发表伟大言论…</string>
     <string name="hand_slow">手慢了，红包派完了</string>
+    <string name="pep_title">我的</string>
+    <string name="pep_level">我是普通用户</string>
+    <string name="dynamic_card_one">收到总金额(元)</string>
+    <string name="dynamic_card_two">钱包总金额(元)</string>
+    <string name="dynamic_card_three">红包总金额(元)</string>
+    <string name="dynamic_card_four">累计影响(人)</string>
+    <string name="dynamic_tab_collect">收到的红包</string>
+    <string name="dynamic_tab_send">我发的红包</string>
 </resources>

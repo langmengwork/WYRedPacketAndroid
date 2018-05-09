@@ -177,7 +177,7 @@ public class RetrofitUtil<T> {
                 .subscribe(observer);
     }
 
-    private String Mosaic(String serverurl, Map<String, String> params) {
+    public static String Mosaic(String serverurl, Map<String, String> params) {
 
         StringBuffer sb = null;
 
@@ -240,7 +240,6 @@ public class RetrofitUtil<T> {
                     @Override
                     public T apply(ResponseBody responseBody) throws Exception {
 
-                        LogUtil.e(responseBody.string());
                         Gson gson = new Gson();
                         type = (T) gson.fromJson(responseBody.string(), (Class<Object>) t);
 
@@ -248,16 +247,6 @@ public class RetrofitUtil<T> {
                     }
                 })
                 .subscribe(observer);
-    }
-
-    //post自定义参数 json请求
-    public void aa(String serverurl, Map<String,String> parmes, Observer observer) {
-
-        Observable<ResponseBody> observable = api.postjson(serverurl,parmes);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-
     }
 
     public static SSLSocketFactory getSSLSocketFactory(Context context) {

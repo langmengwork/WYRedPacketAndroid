@@ -29,7 +29,12 @@ public class SLReplyAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.sl_reply_item, null));
+
+        View view = LayoutInflater.from(context).inflate(R.layout.sl_reply_item, null);
+
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        return new MyViewHolder(view);
     }
 
     @Override

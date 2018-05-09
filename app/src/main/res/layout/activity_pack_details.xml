@@ -1,15 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.activity.packdetails.PackDetailsActivity">
 
+    <RelativeLayout
+        android:id="@+id/reply_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:focusableInTouchMode="true"
+        >
 
-    <include layout="@layout/details_top_layout" />
+        <EditText
+            android:id="@+id/reply_editer"
+            android:layout_width="600px"
+            android:layout_height="70px"
+            android:background="@drawable/shape_fillet_eeeeee_30"
+            android:layout_marginLeft="30px"
+            android:textSize="30px"
+            android:hint="@string/details_hint"
+            android:paddingLeft="20px"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:imeOptions="actionSend"
+            android:singleLine="true"
+            android:maxEms="80"
+            />
 
-    <include layout="@layout/details_reply_layout" />
+        <ImageView
+            android:id="@+id/reply_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:background="@drawable/like_noclick"
+            />
 
-</LinearLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/reply_bottom_bar"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <include layout="@layout/details_top_layout" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20px"
+                android:background="@color/color_line"
+                />
+            <include
+                layout="@layout/details_reply_layout" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

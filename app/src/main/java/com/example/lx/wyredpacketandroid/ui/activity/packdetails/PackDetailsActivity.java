@@ -1,9 +1,12 @@
 package com.example.lx.wyredpacketandroid.ui.activity.packdetails;
 
+import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -12,10 +15,11 @@ import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,10 +29,12 @@ import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.DetailsImgsAdapter;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.DetailsRbShowAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.ReplyAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.MessageListEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.contract.DetailsContract;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.mvp.presenter.DetailsPresenter;
+import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.adapter.AddImgAdapter;
 import com.example.lx.wyredpacketandroid.utils.CodeUtil;
 import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.ToastUtil;
@@ -38,12 +44,13 @@ import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener,DetailsContract.View, TextView.OnEditorActionListener {
+public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener, DetailsContract.View, TextView.OnEditorActionListener, OnRefreshListener {
 
 
     private TextView details_title;
@@ -65,6 +72,13 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     private ReplyAdapter replyAdapter = null;
     private int page = 0;
     private String type = "2";
+    private ViewStub rb_show_layout;
+    private ViewStub bl_show_layout;
+    private TextView bl_show_content;
+    private ImageView bl_show_img;
+    private TextView rb_show_content;
+    private RecyclerView rb_show_imags;
+    private TextView rb_show_like_num;
 
     @Override
     protected void initData() {
@@ -104,7 +118,45 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
         initImags();
 
+        if (detailsEntity.getType().equals("1") || detailsEntity.getType().equals("4")) {
+
+        } else if (detailsEntity.getType().equals("2")) {
+
+            //祝福show
+            bl_show_layout.inflate();
+            initBlView(bl_show_layout);
+
+        } else if (detailsEntity.getType().equals("3")) {
+
+            rb_show_layout.inflate();
+            initRbView(rb_show_layout);
+        }
+
         reply_refresh.autoLoadMore();
+    }
+
+    private void initRbView(ViewStub view) {
+
+        rb_show_content = view.findViewById(R.id.rb_show_content);
+        if (detailsEntity.getContent() != null) {
+            rb_show_content.setText(detailsEntity.getContent());
+        }
+        rb_show_like_num = view.findViewById(R.id.rb_show_like_num);
+        rb_show_like_num.setText(detailsEntity.getPraiseNum()+"");
+        rb_show_imags = view.findViewById(R.id.rb_show_imags);
+
+        addImg();
+
+    }
+
+    private void initBlView(ViewStub view) {
+
+        bl_show_content = view.findViewById(R.id.bl_show_content);
+        if (detailsEntity.getContent() != null) {
+            bl_show_content.setText(detailsEntity.getContent());
+        }
+        bl_show_img = view.findViewById(R.id.bl_show_img);
+        Glide.with(this).load(detailsEntity.getImage().get(0)).into(bl_show_img);
     }
 
     private void initReply() {
@@ -116,13 +168,26 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         //添加Android自带的分割线
         reply_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        replyAdapter = new ReplyAdapter(this, replyList,detailsEntity.getPack_id());
+        replyAdapter = new ReplyAdapter(this, replyList, detailsEntity.getPack_id());
 
         reply_recycler.setAdapter(replyAdapter);
 
         //留言总数
         reply_num.setText(detailsEntity.getMessageCount() + "");
 
+    }
+
+    private void addImg() {
+
+        //add img
+        rb_show_imags.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        rb_show_imags.setLayoutManager(gridLayoutManager);
+        rb_show_imags.addItemDecoration(new SpaceItemDecoration(20,CodeUtil.SPAC_ONE));
+
+        DetailsRbShowAdapter detailsRbShowAdapter = new DetailsRbShowAdapter(this,detailsEntity.getImage());
+
+        rb_show_imags.setAdapter(detailsRbShowAdapter);
     }
 
     private void initImags() {
@@ -153,6 +218,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         details_wallet = (TextView) findViewById(R.id.details_wallet);
         details_wallet.setOnClickListener(this);
         details_imgs_recycle = (RecyclerView) findViewById(R.id.details_imgs_recycle);
+        details_imgs_recycle.setOnClickListener(this);
         reply_recycler = (RecyclerView) findViewById(R.id.reply_recycler);
         details_receive_num = (TextView) findViewById(R.id.details_receive_num);
         details_receive_num.setOnClickListener(this);
@@ -170,6 +236,17 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         reply_bar.setOnClickListener(this);
         reply_refresh = findViewById(R.id.reply_refresh);
         reply_refresh.setOnLoadMoreListener(this);
+        reply_refresh.setOnRefreshListener(this);
+        rb_show_layout = findViewById(R.id.rb_show_layout);
+        bl_show_layout = (ViewStub) findViewById(R.id.bl_show_layout);
+
+    }
+
+    @Override
+    protected void initResume() {
+        super.initResume();
+
+        reply_refresh.autoRefresh();
     }
 
     @Override
@@ -186,8 +263,8 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.reply_like:
 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("uid",UserInfoUtil.instance().getId()+"");
-                map.put("pack_id",detailsEntity.getPack_id());
+                map.put("uid", UserInfoUtil.instance().getId() + "");
+                map.put("pack_id", detailsEntity.getPack_id());
 
                 if (type.equals("2")) {
                     type = "1";
@@ -198,6 +275,11 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 presenter.obtainPraise(map);
+
+                break;
+            case R.id.details_imgs_recycle:
+
+                ReceiveDetailsActivity.startReceiveDetailsActivity(this,detailsEntity.getPack_id());
 
                 break;
         }
@@ -221,7 +303,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
 
         page++;
-        LogUtil.e("page"+page);
+        LogUtil.e("page" + page);
         HashMap<String, String> map = new HashMap<>();
         map.put("pack_id", detailsEntity.getPack_id() + "");
         map.put("page", page + "");
@@ -233,6 +315,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     public void showLoadMore(List<MessageListEntity.DataBean> data) {
 
         reply_refresh.finishLoadMore();
+        reply_refresh.finishRefresh();
 
         if (data.size() <= 0 || data == null) {
 
@@ -290,7 +373,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             submit();
 
             HashMap<String, String> map = new HashMap<>();
-            map.put("uid", UserInfoUtil.instance().getId()+"");
+            map.put("uid", UserInfoUtil.instance().getId() + "");
             map.put("pack_id", detailsEntity.getPack_id());
 //            map.put("pid", );
             map.put("content", v.getText().toString());
@@ -300,4 +383,16 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         }
         return false;
     }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+        page = 1;
+        replyList.clear();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("pack_id", detailsEntity.getPack_id() + "");
+        map.put("page", page + "");
+        presenter.obtainLoadMore(map);
+    }
+
 }

@@ -91,4 +91,18 @@ public class UserInfoUtil {
         public void setDistance(int distance) {
             this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfoUtil{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", sex=" + sex +
+                ", headimgurl=" + headimgurl +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", distance=" + distance +
+                '}';
+    }
 }
