@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
+
+    <TextView
+        android:id="@+id/record_fv_put_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/putWX"
+        android:textSize="15dp"
+        android:textColor="@color/color_666666"
+        />
+
+    <TextView
+        android:id="@+id/record_fv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-040914154"
+        android:textSize="12dp"
+        android:textColor="@color/color_999999"
+        android:layout_below="@id/record_fv_put_tv"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/record_fv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.20元"
+        android:textSize="20dp"
+        android:textColor="@color/color_666666"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:id="@+id/record_fv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已通过"
+        android:textSize="14dp"
+        android:textColor="@color/color_4AA84F"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        />
+
+</RelativeLayout>

@@ -40,4 +40,10 @@
     <string name="dynamic_card_four">累计影响(人)</string>
     <string name="dynamic_tab_collect">收到的红包</string>
     <string name="dynamic_tab_send">我发的红包</string>
+    <string name="screen">筛选</string>
+    <string name="putWX">提现到微信</string>
+    <string name="record_state_0">已通过</string>
+    <string name="record_state_1">待审核</string>
+    <string name="record_state_2">未通过</string>
+    <string name="news">消息</string>
 </resources>

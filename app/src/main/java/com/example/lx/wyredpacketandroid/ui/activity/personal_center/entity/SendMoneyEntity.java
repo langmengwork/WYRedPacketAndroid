@@ -46,15 +46,15 @@ public class SendMoneyEntity {
          * list : [{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":3,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]
          */
 
-        private int totalMoney;
+        private String totalMoney;
         private int totalPeople;
         private List<ListBean> list;
 
-        public int getTotalMoney() {
+        public String getTotalMoney() {
             return totalMoney;
         }
 
-        public void setTotalMoney(int totalMoney) {
+        public void setTotalMoney(String totalMoney) {
             this.totalMoney = totalMoney;
         }
 

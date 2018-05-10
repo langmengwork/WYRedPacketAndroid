@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/news_layout_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:paddingTop="15dp"
+    >
+
+    <ImageView
+        android:id="@+id/news_icon_item"
+        android:layout_marginRight="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/open_pack_icon"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/news_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="珍惜眼前人"
+        android:textSize="15dp"
+        android:textColor="@color/color_606F95"
+        android:layout_toRightOf="@id/news_icon_item"
+        android:layout_alignTop="@id/news_icon_item"
+        />
+
+    <TextView
+        android:id="@+id/news_time_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.18.11.22"
+        android:textSize="11dp"
+        android:textColor="@color/color_999999"
+        android:layout_toRightOf="@id/news_icon_item"
+        android:layout_alignBottom="@id/news_icon_item"
+        />
+
+
+    <TextView
+        android:id="@+id/news_content_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4分钟"
+        android:textSize="15dp"
+        android:textColor="@color/color_333333"
+        android:layout_toRightOf="@id/news_icon_item"
+        android:layout_below="@id/news_time_item"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        />
+
+    <ImageView
+        android:id="@+id/news_img_item"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/open_pack_icon"
+        android:scaleType="fitXY"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>

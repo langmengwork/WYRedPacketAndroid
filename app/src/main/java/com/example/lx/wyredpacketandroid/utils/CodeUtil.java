@@ -11,4 +11,6 @@ public class CodeUtil {
     public static final int SPAC_ONE = 10;
 
     public static final int SPAC_TWO = 20;
+
+    public static final int SPAC_THREE = 30;
 }

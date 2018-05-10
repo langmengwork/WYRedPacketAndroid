@@ -61,4 +61,13 @@ public class UrlUtil {
     //我发的红包
     public static final String SENDLIST = "sendList";
 
+    //记录
+    public static final String LOG = "log";
+
+    //消息
+    public static final String INFORM = "inform";
+
+    //获取红包详情
+    public static final String PACKDETAIL = "packDetail";
+
 }

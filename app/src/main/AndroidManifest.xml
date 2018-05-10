@@ -75,7 +75,9 @@
         <activity android:name=".ui.activity.packdetails.PackDetailsActivity" />
         <activity android:name=".ui.activity.packdetails.ReplyDetailActivity" />
         <activity android:name=".ui.activity.packdetails.ReceiveDetailsActivity" />
-        <activity android:name=".ui.activity.personal_center.MoneyDynamicActivity"></activity>
+        <activity android:name=".ui.activity.personal_center.MoneyDynamicActivity" />
+        <activity android:name=".ui.activity.record.RecordActivity" />
+        <activity android:name=".ui.activity.news.NewsActivity"></activity>
     </application>
 
 </manifest>

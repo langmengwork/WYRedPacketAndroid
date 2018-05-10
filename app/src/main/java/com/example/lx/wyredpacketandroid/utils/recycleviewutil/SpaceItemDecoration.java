@@ -41,6 +41,9 @@ public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
             if (parent.getChildAdapterPosition(view) != 0) {
                 outRect.left = mSpace;
             }
+        } else if (id == CodeUtil.SPAC_THREE) {
+            outRect.bottom = mSpace;
+            outRect.left = mSpace;
         }
 //        outRect.left = mSpace;
 //        outRect.right = mSpace;

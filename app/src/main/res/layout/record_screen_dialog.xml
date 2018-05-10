@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/shape_fillet_f4f4f4_10"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+        
+        <RadioButton
+            android:id="@+id/record_screen_1"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:button="@null"
+            android:text="红包股增值"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/selecter_record_pop"
+            android:textColor="@color/record_pop_tv_color"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line" />
+
+
+        <RadioButton
+            android:id="@+id/record_screen_2"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:button="@null"
+            android:text="邀请奖励"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="15dp"
+            android:background="@drawable/selecter_record_pop"
+            android:textColor="@color/record_pop_tv_color"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line" />
+
+        <RadioButton
+            android:id="@+id/record_screen_0"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:checked="true"
+            android:button="@null"
+            android:text="全部"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:background="@drawable/selecter_record_pop"
+            android:textColor="@color/record_pop_tv_color"
+            />
+        
+    </RadioGroup>
+
+</LinearLayout>

@@ -25,6 +25,7 @@ import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
 import com.example.lx.wyredpacketandroid.base.MainApplication;
 import com.example.lx.wyredpacketandroid.entity.CreateRedpackEntity;
+import com.example.lx.wyredpacketandroid.ui.activity.record.RecordActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.adapter.AddImgAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.entity.SearchAddressEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.entity.TabEntity;
@@ -235,6 +236,12 @@ public class SendActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.send_back:
 
                 finish();
+
+                break;
+
+            case R.id.send_history:
+
+                startActivity(new Intent(this, RecordActivity.class));
 
                 break;
         }

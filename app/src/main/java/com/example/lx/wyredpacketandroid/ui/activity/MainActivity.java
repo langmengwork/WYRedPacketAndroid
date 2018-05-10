@@ -39,6 +39,7 @@ import com.example.lx.wyredpacketandroid.entity.GetPackEntity;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.mvp.contract.MainContract;
 import com.example.lx.wyredpacketandroid.mvp.presenter.MapPresenter;
+import com.example.lx.wyredpacketandroid.ui.activity.news.NewsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.PersonalActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.SendActivity;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     private RelativeLayout map_expand_layout;
     private LinearLayout map_refresh;
     private LinearLayout map_history;
-    private ImageView map_advert_img;
+    private ImageView map_advert_img,map_news;
     private RelativeLayout map_advert_layout;
     private MapPresenter presenter;
     private List<GetPackEntity.DataBean.ListBean> markerList;
@@ -287,6 +288,9 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         map_advert_img = (ImageView) findViewById(R.id.map_advert_img);
         map_advert_layout = (RelativeLayout) findViewById(R.id.map_advert_layout);
         map_title_money = findViewById(R.id.map_title_money);
+        map_news = findViewById(R.id.map_news);
+        map_news.setOnClickListener(this);
+
     }
 
     @Override
@@ -297,6 +301,12 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
             case R.id.map_personal_center:
 
                 startActivity(new Intent(this, PersonalActivity.class));
+
+                break;
+
+            case R.id.map_news:
+
+                startActivity(new Intent(this, NewsActivity.class));
 
                 break;
         }

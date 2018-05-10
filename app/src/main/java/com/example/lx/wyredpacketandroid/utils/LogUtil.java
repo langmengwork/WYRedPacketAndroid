@@ -76,7 +76,7 @@ public class LogUtil {
     {
         if (getLogLevel() >= LOG_LEVEL_ERROR)
         {
-            Log.e("TAG", msg);
+            Log.e("TAGGG", msg);
         }
     }
 

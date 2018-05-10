@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
-import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.ReceiveDetailAdapter;
-import com.example.lx.wyredpacketandroid.ui.activity.personal_center.adapter.CollectMoneyAdapter;
+import com.example.lx.wyredpacketandroid.ui.activity.personal_center.adapter.DynamicMoneyAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.adapter.SendMoneyAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.CollectMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.SendMoneyEntity;
@@ -45,7 +44,7 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
     private PepPresenter presenter;
     private List<CollectMoneyEntity.DataBean.ListBean> collectList = new ArrayList<>();
     private List<SendMoneyEntity.DataBean.ListBean> sendList = new ArrayList<>();
-    private CollectMoneyAdapter collectMoneyAdapter;
+    private DynamicMoneyAdapter dynamicMoneyAdapter;
     private SendMoneyAdapter sendMoneyAdapter;
     private int TABTYPE = 0;
     private static final int COLLECT = 0;
@@ -60,8 +59,6 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
 
         addTab();
 
-        initRecycler();
-
         refreshData();
 
     }
@@ -75,6 +72,9 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
         //添加Android自带的分割线
         dynamic_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        dynamicMoneyAdapter = new DynamicMoneyAdapter(this, collectList, sendList);
+
+        dynamic_recycler.setAdapter(dynamicMoneyAdapter);
     }
 
     private void refreshData() {
@@ -191,18 +191,18 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
 
         if (data.getList() == null || data.getList().size() <= 0) {
 
-            dynamic_refresh.finishLoadMoreWithNoMoreData();
+            dynamic_refresh.setNoMoreData(true);
             return;
         }
 
         collectList.addAll(data.getList());
 
-        if (collectMoneyAdapter == null) {
-            collectMoneyAdapter = new CollectMoneyAdapter(this, collectList);
-            dynamic_recycler.setAdapter(collectMoneyAdapter);
+        if (dynamicMoneyAdapter == null) {
+
+            initRecycler();
         } else {
 
-            collectMoneyAdapter.notifyDataSetChanged();
+            dynamicMoneyAdapter.notifyDataSetChanged();
         }
     }
 
@@ -222,20 +222,16 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
 
         if (data.getList() == null || data.getList().size() <= 0) {
 
-            dynamic_refresh.finishLoadMoreWithNoMoreData();
+            dynamic_refresh.setNoMoreData(true);
             return;
         }
 
         sendList = data.getList();
 
-        if (sendMoneyAdapter == null) {
-
-            sendMoneyAdapter = new SendMoneyAdapter(this, sendList);
-            dynamic_recycler.setAdapter(sendMoneyAdapter);
-
+        if (dynamicMoneyAdapter == null) {
+            initRecycler();
         } else {
-
-            sendMoneyAdapter.notifyDataSetChanged();
+            dynamicMoneyAdapter.notify(collectList,sendList);
         }
 
     }

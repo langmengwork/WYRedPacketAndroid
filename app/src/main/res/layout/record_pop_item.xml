@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/record_pop_layout_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    >
+
+    <CheckBox
+        android:id="@+id/record_pop_tv_item"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:button="@null"
+        android:gravity="center"
+        android:text="发红包"
+        android:background="@drawable/selecter_record_pop"
+        android:textColor="@color/record_pop_tv_color"
+        />
+
+</LinearLayout>
