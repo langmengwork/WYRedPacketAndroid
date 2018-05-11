@@ -41,6 +41,7 @@ import com.example.lx.wyredpacketandroid.mvp.contract.MainContract;
 import com.example.lx.wyredpacketandroid.mvp.presenter.MapPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.news.NewsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
+import com.example.lx.wyredpacketandroid.ui.activity.personal_center.MoneyDynamicActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.PersonalActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.SendActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.wallet.WalletActivity;
@@ -152,17 +153,23 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         circle.setCenter(latLng);
 
 
-        if (aa) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("uid", UserInfoUtil.instance().getId()+"");
-            map.put("point", latLng.longitude+","+latLng.latitude);
-            presenter.obtainGetPack(map);
-            aa = false;
-        }
+//        if (aa) {
+//
+//            aa = false;
+//        }
 
-
+        getPack();
 
         changeZoom();
+    }
+
+    private void getPack() {
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("uid", UserInfoUtil.instance().getId()+"");
+        map.put("point", latLng.longitude+","+latLng.latitude);
+        presenter.obtainGetPack(map);
+
     }
 
     private void drawMaker(LatLng latLng) {
@@ -215,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     private void initLocationStyle() {
 
         myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
         myLocationStyle.interval(1000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
 
         myLocationStyle.strokeColor(Color.TRANSPARENT);//设置定位蓝点精度圆圈的边框颜色的方法。
@@ -287,7 +294,9 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         map_personal_center.setOnClickListener(this);
         map_expand_layout = (RelativeLayout) findViewById(R.id.map_expand_layout);
         map_refresh = (LinearLayout) findViewById(R.id.map_refresh);
+        map_refresh.setOnClickListener(this);
         map_history = (LinearLayout) findViewById(R.id.map_history);
+        map_history.setOnClickListener(this);
         map_advert_img = (ImageView) findViewById(R.id.map_advert_img);
         map_advert_layout = (RelativeLayout) findViewById(R.id.map_advert_layout);
         map_title_money = findViewById(R.id.map_title_money);
@@ -315,6 +324,18 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
             case R.id.map_wallet_check:
 
                 startActivity(new Intent(this, WalletActivity.class));
+
+                break;
+
+            case R.id.map_history:
+
+                startActivity(new Intent(this,MoneyDynamicActivity.class));
+
+                break;
+
+            case R.id.map_refresh:
+
+                getPack();
 
                 break;
         }

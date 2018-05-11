@@ -20,7 +20,6 @@ import java.util.List;
 
 public class WalletActivity extends BaseActivity implements View.OnClickListener {
 
-
     private TextView wallet_money;
     private TextView wallet_extract;
     private TextView wallet_tip_one;
@@ -97,4 +96,5 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
 
     }
+
 }
