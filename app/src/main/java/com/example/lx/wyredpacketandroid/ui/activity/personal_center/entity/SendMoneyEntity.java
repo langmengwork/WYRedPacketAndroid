@@ -4,11 +4,10 @@ import java.util.List;
 
 public class SendMoneyEntity {
 
-
     /**
      * err_code : 200
      * return_msg : success
-     * data : {"totalMoney":3200,"totalPeople":2,"list":[{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":3,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]}
+     * data : {"totalMoney":3100.0200000000004,"totalPeople":6,"list":[{"id":29,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":29,"statistics":{"viewNum":"21","praiseNum":1,"messageNum":0,"is_praise":false}},{"id":33,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":33,"statistics":{"viewNum":"41","praiseNum":0,"messageNum":0,"is_praise":false}},{"id":34,"uid":1000000,"type":3,"content":"难兄难弟激动就接电话","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":34,"statistics":{"viewNum":"119","praiseNum":0,"messageNum":5,"is_praise":false}},{"id":38,"uid":1000000,"type":3,"content":"10023","image":["http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png"],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":38,"statistics":{"viewNum":"25","praiseNum":0,"messageNum":0,"is_praise":false}},{"id":35,"uid":1000004,"type":2,"content":"图","image":["http://images.yaxiangame.com/2018-05-04_MTchFKfp.png"],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/d8nYib6w74U1dE1oPReWhrYNPibvqks14SeZiaicgRCJO9wkuTnqsZdvDLPCLmQD5EJnNVVhVc4oWrkXpcHRerJV5A/132","packName":"coming","pack_id":35}]}
      */
 
     private String err_code;
@@ -41,20 +40,20 @@ public class SendMoneyEntity {
 
     public static class DataBean {
         /**
-         * totalMoney : 3200
-         * totalPeople : 2
-         * list : [{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":2,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"uid":1000000,"type":3,"content":"10023","image":"[]","packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]
+         * totalMoney : 3100.0200000000004
+         * totalPeople : 6
+         * list : [{"id":29,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":29,"statistics":{"viewNum":"21","praiseNum":1,"messageNum":0,"is_praise":false}},{"id":33,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":33,"statistics":{"viewNum":"41","praiseNum":0,"messageNum":0,"is_praise":false}},{"id":34,"uid":1000000,"type":3,"content":"难兄难弟激动就接电话","image":[],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":34,"statistics":{"viewNum":"119","praiseNum":0,"messageNum":5,"is_praise":false}},{"id":38,"uid":1000000,"type":3,"content":"10023","image":["http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png","http://images.yaxiangame.com/2018-05-04_MTchFKfp.png"],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132","packName":"凭什么说","pack_id":38,"statistics":{"viewNum":"25","praiseNum":0,"messageNum":0,"is_praise":false}},{"id":35,"uid":1000004,"type":2,"content":"图","image":["http://images.yaxiangame.com/2018-05-04_MTchFKfp.png"],"packImg":"http://thirdwx.qlogo.cn/mmopen/vi_32/d8nYib6w74U1dE1oPReWhrYNPibvqks14SeZiaicgRCJO9wkuTnqsZdvDLPCLmQD5EJnNVVhVc4oWrkXpcHRerJV5A/132","packName":"coming","pack_id":35}]
          */
 
-        private String totalMoney;
+        private double totalMoney;
         private int totalPeople;
         private List<ListBean> list;
 
-        public String getTotalMoney() {
+        public double getTotalMoney() {
             return totalMoney;
         }
 
-        public void setTotalMoney(String totalMoney) {
+        public void setTotalMoney(double totalMoney) {
             this.totalMoney = totalMoney;
         }
 
@@ -76,22 +75,34 @@ public class SendMoneyEntity {
 
         public static class ListBean {
             /**
+             * id : 29
              * uid : 1000000
-             * type : 2
+             * type : 3
              * content : 10023
              * image : []
-             * packImg : https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg
-             * packName : 测试
-             * statistics : {"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}
+             * packImg : http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLkjcARRKCeFq1seDLpQTiaChaXeFWDKIiaPicPakwfWyiaIuibFRKTh3NEuwWz1EbDADbWGCibb3U3m8Pg/132
+             * packName : 凭什么说
+             * pack_id : 29
+             * statistics : {"viewNum":"21","praiseNum":1,"messageNum":0,"is_praise":false}
              */
 
+            private int id;
             private int uid;
             private int type;
             private String content;
-            private String image;
             private String packImg;
             private String packName;
+            private int pack_id;
             private StatisticsBean statistics;
+            private List<?> image;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
 
             public int getUid() {
                 return uid;
@@ -117,14 +128,6 @@ public class SendMoneyEntity {
                 this.content = content;
             }
 
-            public String getImage() {
-                return image;
-            }
-
-            public void setImage(String image) {
-                this.image = image;
-            }
-
             public String getPackImg() {
                 return packImg;
             }
@@ -141,6 +144,14 @@ public class SendMoneyEntity {
                 this.packName = packName;
             }
 
+            public int getPack_id() {
+                return pack_id;
+            }
+
+            public void setPack_id(int pack_id) {
+                this.pack_id = pack_id;
+            }
+
             public StatisticsBean getStatistics() {
                 return statistics;
             }
@@ -149,24 +160,32 @@ public class SendMoneyEntity {
                 this.statistics = statistics;
             }
 
+            public List<?> getImage() {
+                return image;
+            }
+
+            public void setImage(List<?> image) {
+                this.image = image;
+            }
+
             public static class StatisticsBean {
                 /**
-                 * viewNum : 0
-                 * praiseNum : 0
+                 * viewNum : 21
+                 * praiseNum : 1
                  * messageNum : 0
                  * is_praise : false
                  */
 
-                private int viewNum;
+                private String viewNum;
                 private int praiseNum;
                 private int messageNum;
                 private boolean is_praise;
 
-                public int getViewNum() {
+                public String getViewNum() {
                     return viewNum;
                 }
 
-                public void setViewNum(int viewNum) {
+                public void setViewNum(String viewNum) {
                     this.viewNum = viewNum;
                 }
 

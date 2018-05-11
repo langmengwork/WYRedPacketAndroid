@@ -43,6 +43,7 @@ import com.example.lx.wyredpacketandroid.ui.activity.news.NewsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.PersonalActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.SendActivity;
+import com.example.lx.wyredpacketandroid.ui.activity.wallet.WalletActivity;
 import com.example.lx.wyredpacketandroid.utils.DateUtil;
 import com.example.lx.wyredpacketandroid.utils.GPSLocation;
 import com.example.lx.wyredpacketandroid.utils.LocationUtils;
@@ -275,7 +276,9 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     private void initView() {
         map_toolbar = (Toolbar) findViewById(R.id.map_toolbar);
         map_collect_check = (CheckBox) findViewById(R.id.map_collect_check);
+        map_collect_check.setOnClickListener(this);
         map_wallet_check = (CheckBox) findViewById(R.id.map_wallet_check);
+        map_wallet_check.setOnClickListener(this);
         map_bottombar = (RelativeLayout) findViewById(R.id.map_bottombar);
         mapView = (MapView) findViewById(R.id.mapView);
         map_send_money = (LinearLayout) findViewById(R.id.map_send_money);
@@ -307,6 +310,11 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
             case R.id.map_news:
 
                 startActivity(new Intent(this, NewsActivity.class));
+
+                break;
+            case R.id.map_wallet_check:
+
+                startActivity(new Intent(this, WalletActivity.class));
 
                 break;
         }
@@ -402,4 +410,5 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
 
         }
     }
+
 }

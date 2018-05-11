@@ -8,7 +8,7 @@ public class CollectMoneyEntity {
     /**
      * err_code : 200
      * return_msg : success
-     * data : {"receiveMoney":0.23,"totalMoney":0.23,"list":[{"money":21.2736,"uid":1000000,"type":2,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"money":1.8495,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]}
+     * data : {"receiveMoney":0.23,"totalMoney":0.23,"list":[{"id":1,"money":21.2736,"uid":1000000,"type":2,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"id":1,"money":1.8495,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]}
      */
 
     private String err_code;
@@ -43,7 +43,7 @@ public class CollectMoneyEntity {
         /**
          * receiveMoney : 0.23
          * totalMoney : 0.23
-         * list : [{"money":21.2736,"uid":1000000,"type":2,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"money":1.8495,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]
+         * list : [{"id":1,"money":21.2736,"uid":1000000,"type":2,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试"},{"id":1,"money":1.8495,"uid":1000000,"type":3,"content":"10023","image":[],"packImg":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","packName":"测试","statistics":{"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}}]
          */
 
         private double receiveMoney;
@@ -76,6 +76,7 @@ public class CollectMoneyEntity {
 
         public static class ListBean {
             /**
+             * id : 1
              * money : 21.2736
              * uid : 1000000
              * type : 2
@@ -86,6 +87,7 @@ public class CollectMoneyEntity {
              * statistics : {"viewNum":0,"praiseNum":0,"messageNum":0,"is_praise":false}
              */
 
+            private int id;
             private double money;
             private int uid;
             private int type;
@@ -94,6 +96,14 @@ public class CollectMoneyEntity {
             private String packName;
             private StatisticsBean statistics;
             private List<?> image;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
 
             public double getMoney() {
                 return money;

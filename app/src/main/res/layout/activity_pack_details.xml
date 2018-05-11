@@ -54,14 +54,12 @@
             android:orientation="vertical"
             >
 
-            <include layout="@layout/details_top_layout" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="20px"
-                android:background="@color/color_line"
-                />
             <include
+                android:id="@+id/apd_top"
+                layout="@layout/details_top_layout" />
+
+            <include
+                android:id="@+id/apd_reply"
                 layout="@layout/details_reply_layout" />
 
         </LinearLayout>

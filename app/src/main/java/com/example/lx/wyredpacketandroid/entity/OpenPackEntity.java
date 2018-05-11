@@ -60,7 +60,7 @@ public class OpenPackEntity {
          */
 
         private String packMoney;
-        private double gushu;
+        private String gushu;
         private boolean is_owner;
         private int praiseNum;
         private int totalUserNum;
@@ -84,11 +84,11 @@ public class OpenPackEntity {
             this.packMoney = packMoney;
         }
 
-        public double getGushu() {
+        public String getGushu() {
             return gushu;
         }
 
-        public void setGushu(double gushu) {
+        public void setGushu(String gushu) {
             this.gushu = gushu;
         }
 

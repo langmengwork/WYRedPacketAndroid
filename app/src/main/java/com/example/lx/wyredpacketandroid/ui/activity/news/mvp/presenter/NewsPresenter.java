@@ -4,6 +4,7 @@ import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.entity.NewsEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.mvp.contract.NewsContract;
 import com.example.lx.wyredpacketandroid.ui.activity.news.mvp.model.NewsModel;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.SLReplyEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -35,8 +36,8 @@ public class NewsPresenter extends NewsContract.Presenter {
     }
 
     @Override
-    public void sendDetails(OpenPackEntity.DataBean data) {
+    public void sendDetails(SLReplyEntity.DataBean data) {
 
-        mView.showDetails(data);
+//        mView.showDetails(data);
     }
 }

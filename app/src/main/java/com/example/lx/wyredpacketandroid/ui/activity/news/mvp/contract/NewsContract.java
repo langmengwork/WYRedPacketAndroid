@@ -5,6 +5,7 @@ import com.example.lx.wyredpacketandroid.base.BasePresenter;
 import com.example.lx.wyredpacketandroid.base.BaseView;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.entity.NewsEntity;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.SLReplyEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ public interface NewsContract {
 
         void showView(List<NewsEntity.DataBean> data);
 
-        void showDetails(OpenPackEntity.DataBean data);
+//        void showDetails(SLReplyEntity.DataBean data);
 
     }
 
@@ -36,7 +37,7 @@ public interface NewsContract {
 
         public abstract void obtainDetails(Map<String, String> map);
 
-        public abstract void sendDetails(OpenPackEntity.DataBean data);
+        public abstract void sendDetails(SLReplyEntity.DataBean data);
 
     }
 }

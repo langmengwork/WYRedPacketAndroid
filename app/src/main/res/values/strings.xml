@@ -46,4 +46,5 @@
     <string name="record_state_1">待审核</string>
     <string name="record_state_2">未通过</string>
     <string name="news">消息</string>
+    <string name="wallet_tip_one">我的红包股价值=今日红包股价x我的红包股数</string>
 </resources>

@@ -81,7 +81,7 @@
            android:button="@null"
            android:drawableTop="@drawable/selector_wallet"
            android:drawablePadding="10px"
-           android:text="收红包"
+           android:text="钱包"
            android:textSize="20px"
            android:textColor="@color/map_bottom_tv_color"
            android:layout_centerVertical="true"

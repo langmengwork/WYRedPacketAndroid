@@ -16,7 +16,9 @@ import com.example.lx.wyredpacketandroid.ui.activity.news.entity.NewsEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.mvp.contract.NewsContract;
 import com.example.lx.wyredpacketandroid.ui.activity.news.mvp.presenter.NewsPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.ReplyDetailActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.ReplyAdapter;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.SLReplyEntity;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -105,14 +107,6 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     @Override
-    public void showDetails(OpenPackEntity.DataBean data) {
-
-        startActivity(new Intent(this, PackDetailsActivity.class)
-        .putExtra("data",new Gson().toJson(data)));
-
-    }
-
-    @Override
     public void onError(String error) {
 
     }
@@ -132,13 +126,8 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener ,
     @Override
     public void adapterClick(int position) {
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("id",newsList.get(position).getParam_id()+"");
-        map.put("type","1");
-
-        // TODO: 2018/5/10  id到底传那个，type到底用不用传
-
-        presenter.obtainDetails(map);
+        ReplyDetailActivity.StartReplyDetailActivity(this,newsList.get(position).getParam_id()+"",
+                newsList.get(position).getPack_id()+"");
 
     }
 }

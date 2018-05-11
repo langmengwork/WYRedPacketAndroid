@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +23,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<CollectMoneyEntity.DataBean.ListBean> list;
     private List<SendMoneyEntity.DataBean.ListBean> sendList;
+    private onListner listner;
     private static int PL = 0;
     private static int BL = 1;
     private static int RB = 2;
@@ -43,6 +45,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
         if (viewType == PL) {
 
             view = LayoutInflater.from(context).inflate(R.layout.dynamic_pl_item, null);
+
             return new PLViewHolder(view);
 
         } else if (viewType == BL) {
@@ -93,11 +96,13 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
 
     }
 
-    private void sendRbView(RBViewHolder rb, int position) {
+    private void sendRbView(RBViewHolder rb, final int position) {
 
         Glide.with(context).load(sendList.get(position).getPackImg()).into(rb.dynamic_rb_icon);
 
-        Glide.with(context).load(sendList.get(position).getImage()).into(rb.dynamic_rb_img);
+        if (sendList.get(position).getImage() != null && sendList.get(position).getImage().size() > 0) {
+            Glide.with(context).load(sendList.get(position).getImage().get(0)).into(rb.dynamic_rb_img);
+        }
 
         rb.dynamic_rb_name.setText(sendList.get(position).getPackName());
 
@@ -113,24 +118,76 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
 
         }
 
+        rb.dynamic_rb_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
+
     }
 
-    private void sendBlView(BLViewHolder bl, int position) {
+    private void sendBlView(BLViewHolder bl, final int position) {
 
         Glide.with(context).load(sendList.get(position).getPackImg()).into(bl.dynamic_bl_icon);
 
-        Glide.with(context).load(sendList.get(position).getImage()).into(bl.dynamic_bl_img);
+        if (sendList.get(position).getImage() != null && sendList.get(position).getImage().size() > 0) {
+
+            Glide.with(context).load(sendList.get(position).getImage().get(0)).into(bl.dynamic_bl_img);
+        }
 
         bl.dynamic_bl_name.setText(sendList.get(position).getPackName());
 
         bl.dynamic_bl_content.setText(sendList.get(position).getContent());
+
+        bl.dynamic_bl_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
+
     }
 
-    private void sendPlView(PLViewHolder pl, int position) {
+    private void sendPlView(PLViewHolder pl, final int position) {
 
         Glide.with(context).load(sendList.get(position).getPackImg()).into(pl.dynamic_pl_icon);
 
         pl.dynamic_pl_name.setText(sendList.get(position).getPackName());
+
+        pl.dynamic_pl_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
 
     }
 
@@ -156,7 +213,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
 
     }
 
-    private void collectRbView(RBViewHolder rb, int position) {
+    private void collectRbView(RBViewHolder rb, final int position) {
 
         Glide.with(context).load(list.get(position).getPackImg()).into(rb.dynamic_rb_icon);
 
@@ -177,9 +234,25 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
 
         }
 
+        rb.dynamic_rb_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
+
     }
 
-    private void collectBlView(BLViewHolder bl, int position) {
+    private void collectBlView(BLViewHolder bl, final int position) {
 
         Glide.with(context).load(list.get(position).getPackImg()).into(bl.dynamic_bl_icon);
 
@@ -191,17 +264,49 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
         bl.dynamic_bl_name.setText(list.get(position).getPackName());
 
         bl.dynamic_bl_content.setText(list.get(position).getContent());
+
+        bl.dynamic_bl_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
+
     }
 
-    private void collectPlView(PLViewHolder pl, int position) {
-
-
+    private void collectPlView(PLViewHolder pl, final int position) {
 
         Glide.with(context).load(list.get(position).getPackImg()).into(pl.dynamic_pl_icon);
 
         pl.dynamic_pl_money.setText("获得"+list.get(position).getMoney()+"红包股");
 
         pl.dynamic_pl_name.setText(list.get(position).getPackName());
+
+        pl. dynamic_pl_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listner != null) {
+                    int uid;
+                    if (list != null && list.size() > 0) {
+
+                        uid = list.get(position).getId();
+                    } else {
+                        uid = sendList.get(position).getId();
+                    }
+                    listner.dynamicClick(uid+"");
+                }
+            }
+        });
+
     }
 
     @Override
@@ -243,12 +348,15 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
         private ImageView dynamic_pl_icon;
         private TextView dynamic_pl_name;
         private TextView dynamic_pl_money;
+        private RelativeLayout dynamic_pl_layout;
 
         public PLViewHolder(View itemView) {
             super(itemView);
             dynamic_pl_icon = itemView.findViewById(R.id.dynamic_pl_icon);
             dynamic_pl_name = itemView.findViewById(R.id.dynamic_pl_name);
             dynamic_pl_money = itemView.findViewById(R.id.dynamic_pl_money);
+            dynamic_pl_layout = itemView.findViewById(R.id.dynamic_pl_layout);
+
         }
     }
 
@@ -258,6 +366,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
         private TextView dynamic_bl_name;
         private ImageView dynamic_bl_img;
         private TextView dynamic_bl_content;
+        private RelativeLayout dynamic_bl_layout;
 
         public BLViewHolder(View itemView) {
             super(itemView);
@@ -266,6 +375,8 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
             dynamic_bl_name = itemView.findViewById(R.id.dynamic_bl_name);
             dynamic_bl_img = itemView.findViewById(R.id.dynamic_bl_img);
             dynamic_bl_content = itemView.findViewById(R.id.dynamic_bl_content);
+            dynamic_bl_layout = itemView.findViewById(R.id.dynamic_bl_layout);
+
         }
     }
 
@@ -278,6 +389,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
         private TextView dynamic_rb_eyes;
         private TextView dynamic_rb_news;
         private TextView dynamic_rb_likes;
+        private RelativeLayout dynamic_rb_layout;
 
         public RBViewHolder(View itemView) {
             super(itemView);
@@ -289,6 +401,7 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
             dynamic_rb_eyes = itemView.findViewById(R.id.dynamic_rb_eyes);
             dynamic_rb_news = itemView.findViewById(R.id.dynamic_rb_news);
             dynamic_rb_likes = itemView.findViewById(R.id.dynamic_rb_likes);
+            dynamic_rb_layout = itemView.findViewById(R.id.dynamic_rb_layout);
         }
     }
 
@@ -299,4 +412,15 @@ public class DynamicMoneyAdapter extends RecyclerView.Adapter {
 
         notifyDataSetChanged();
     }
+
+    public interface onListner{
+
+        void dynamicClick(String id);
+    }
+
+    public void setOnClick(onListner listner) {
+
+        this.listner = listner;
+    }
+
 }

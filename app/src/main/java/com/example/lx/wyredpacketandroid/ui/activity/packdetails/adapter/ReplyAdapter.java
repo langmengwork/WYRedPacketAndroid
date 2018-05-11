@@ -59,8 +59,7 @@ public class ReplyAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 ReplyDetailActivity.StartReplyDetailActivity(context,
                         list.get(position).getId()+"",
-                        pack_id,
-                        list.get(position).getReturnMessage().getReturnMessageCount()+"");
+                        pack_id);
             }
         });
 
@@ -80,14 +79,12 @@ public class ReplyAdapter extends RecyclerView.Adapter {
                     public void onClick(View v) {
                         ReplyDetailActivity.StartReplyDetailActivity(context,
                                 list.get(position).getId()+"",
-                                pack_id,
-                                list.get(position).getReturnMessage().getReturnMessageCount()+"");
+                                pack_id);
                     }
                 });
             } else {
                 ho.reply_sl_content_item.setText("：" + list.get(position).getReturnMessage().getContent());
             }
-
         }
     }
 

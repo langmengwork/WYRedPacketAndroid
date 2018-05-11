@@ -3,6 +3,7 @@ package com.example.lx.wyredpacketandroid.ui.activity.news.mvp.model;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.entity.NewsEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.news.mvp.contract.NewsContract;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.SLReplyEntity;
 import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.networkutil.RetrofitUtil;
 import com.example.lx.wyredpacketandroid.utils.networkutil.UrlUtil;
@@ -47,7 +48,7 @@ public class NewsModel implements NewsContract.Model {
     @Override
     public void gainDetails(final NewsContract.Presenter presenter, Map<String, String> map) {
 
-        RetrofitUtil.instance().post(UrlUtil.PACKDETAIL, map, OpenPackEntity.class, new Observer() {
+        RetrofitUtil.instance().post(UrlUtil.MESSAGEDETAIL, map, SLReplyEntity.class, new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -56,7 +57,7 @@ public class NewsModel implements NewsContract.Model {
             @Override
             public void onNext(Object value) {
 
-                OpenPackEntity entity = (OpenPackEntity) value;
+                SLReplyEntity entity = (SLReplyEntity) value;
 
                 if (entity != null) {
                     presenter.sendDetails(entity.getData());

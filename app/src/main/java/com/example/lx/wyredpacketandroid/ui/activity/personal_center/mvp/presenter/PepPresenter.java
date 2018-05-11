@@ -1,5 +1,6 @@
 package com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.presenter;
 
+import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.CollectMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.SendMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.contract.PepContract;
@@ -38,6 +39,18 @@ public class PepPresenter extends PepContract.Presenter {
     public void sendSend(SendMoneyEntity.DataBean data) {
 
         mView.shwoSend(data);
+    }
+
+    @Override
+    public void obtainDetails(Map<String, String> map) {
+
+        mModel.gainDetails(this, map);
+    }
+
+    @Override
+    public void sendDetails(OpenPackEntity.DataBean data) {
+
+        mView.showDetails(data);
     }
 
 }

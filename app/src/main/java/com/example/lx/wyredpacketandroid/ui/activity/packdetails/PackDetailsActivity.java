@@ -72,13 +72,14 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     private ReplyAdapter replyAdapter = null;
     private int page = 0;
     private String type = "2";
-    private ViewStub rb_show_layout;
-    private ViewStub bl_show_layout;
+    private boolean moneystate = true;
     private TextView bl_show_content;
     private ImageView bl_show_img;
     private TextView rb_show_content;
     private RecyclerView rb_show_imags;
     private TextView rb_show_like_num;
+    private LinearLayout rb_show_layout;
+    private RelativeLayout bl_show_layout;
 
     @Override
     protected void initData() {
@@ -88,6 +89,10 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         //获取详情数据
         detailsEntity = new Gson().fromJson(getIntent().getStringExtra("data"),
                 OpenPackEntity.DataBean.class);
+
+        if (getIntent().getStringExtra("state") != null) {
+            moneystate = false;
+        }
 
         //设置红包icon
         Glide.with(this).load(detailsEntity.getPackImg()).into(details_icon);
@@ -100,18 +105,26 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
         //设置金额
 
-        SpannableString spanString = new SpannableString(detailsEntity.getPackMoney());
-        if (detailsEntity.getPackMoney().equals(getResources().getString(R.string.hand_slow))) {
-            AbsoluteSizeSpan span = new AbsoluteSizeSpan(60);
-            spanString.setSpan(span, 0, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            AbsoluteSizeSpan span = new AbsoluteSizeSpan(30);
-            spanString.setSpan(span, detailsEntity.getPackMoney().length() - 1, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            //设置股数
-            details_shares.setText("+" + detailsEntity.getGushu() + "红包股");
+        if (moneystate) {
+
+            details_money.setVisibility(View.VISIBLE);
+            details_shares.setVisibility(View.VISIBLE);
+            details_wallet.setVisibility(View.VISIBLE);
+
+            SpannableString spanString = new SpannableString(detailsEntity.getPackMoney());
+            if (detailsEntity.getPackMoney().equals(getResources().getString(R.string.hand_slow))) {
+                AbsoluteSizeSpan span = new AbsoluteSizeSpan(60);
+                spanString.setSpan(span, 0, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                AbsoluteSizeSpan span = new AbsoluteSizeSpan(30);
+                spanString.setSpan(span, detailsEntity.getPackMoney().length() - 1, detailsEntity.getPackMoney().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //设置股数
+                details_shares.setText("+" + detailsEntity.getGushu() + "红包股");
+            }
+
+            details_money.setText(spanString);
         }
 
-        details_money.setText(spanString);
 
         //设置领取人数
         details_receive_num.setText("…" + detailsEntity.getTotalUserNum() + "+人领取");
@@ -122,41 +135,41 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
         } else if (detailsEntity.getType().equals("2")) {
 
-            //祝福show
-            bl_show_layout.inflate();
-            initBlView(bl_show_layout);
+//            //祝福show
+            bl_show_layout.setVisibility(View.GONE);
+            initBlView();
 
         } else if (detailsEntity.getType().equals("3")) {
 
-            rb_show_layout.inflate();
-            initRbView(rb_show_layout);
+
+            rb_show_layout.setVisibility(View.VISIBLE);
+            initRbView();
         }
 
         reply_refresh.autoLoadMore();
     }
 
-    private void initRbView(ViewStub view) {
+    private void initRbView() {
 
-        rb_show_content = view.findViewById(R.id.rb_show_content);
         if (detailsEntity.getContent() != null) {
             rb_show_content.setText(detailsEntity.getContent());
         }
-        rb_show_like_num = view.findViewById(R.id.rb_show_like_num);
+
         rb_show_like_num.setText(detailsEntity.getPraiseNum()+"");
-        rb_show_imags = view.findViewById(R.id.rb_show_imags);
 
         addImg();
 
     }
 
-    private void initBlView(ViewStub view) {
+    private void initBlView() {
 
-        bl_show_content = view.findViewById(R.id.bl_show_content);
         if (detailsEntity.getContent() != null) {
             bl_show_content.setText(detailsEntity.getContent());
         }
-        bl_show_img = view.findViewById(R.id.bl_show_img);
-        Glide.with(this).load(detailsEntity.getImage().get(0)).into(bl_show_img);
+
+        if (detailsEntity.getImage() != null && detailsEntity.getImage().size() > 0) {
+            Glide.with(this).load(detailsEntity.getImage().get(0)).into(bl_show_img);
+        }
     }
 
     private void initReply() {
@@ -207,6 +220,11 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initView() {
 
+        bl_show_content = findViewById(R.id.bl_show_content);
+        bl_show_img = findViewById(R.id.bl_show_img);
+        rb_show_content = findViewById(R.id.rb_show_content);
+        rb_show_like_num = findViewById(R.id.rb_show_like_num);
+        rb_show_imags = findViewById(R.id.rb_show_imags);
         details_title = (TextView) findViewById(R.id.details_title);
         details_title.setOnClickListener(this);
         details_icon = (ImageView) findViewById(R.id.details_icon);
@@ -238,7 +256,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         reply_refresh.setOnLoadMoreListener(this);
         reply_refresh.setOnRefreshListener(this);
         rb_show_layout = findViewById(R.id.rb_show_layout);
-        bl_show_layout = (ViewStub) findViewById(R.id.bl_show_layout);
+        bl_show_layout = findViewById(R.id.bl_show_layout);
 
     }
 

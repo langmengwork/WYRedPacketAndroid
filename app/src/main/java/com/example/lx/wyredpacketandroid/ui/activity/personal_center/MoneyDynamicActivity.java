@@ -1,5 +1,6 @@
 package com.example.lx.wyredpacketandroid.ui.activity.personal_center;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
+import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
+import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.adapter.DynamicMoneyAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.adapter.SendMoneyAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.CollectMoneyEntity;
@@ -16,10 +19,12 @@ import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.Send
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.contract.PepContract;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.presenter.PepPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.sendmoney.entity.TabEntity;
+import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -29,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MoneyDynamicActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener, OnRefreshListener, OnTabSelectListener,PepContract.View {
+public class MoneyDynamicActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener, OnRefreshListener, OnTabSelectListener,PepContract.View, DynamicMoneyAdapter.onListner {
 
 
     private CommonTabLayout dynamic_tab;
@@ -50,7 +55,6 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
     private static final int COLLECT = 0;
     private static final int SEND = 1;
     private boolean state = true;
-
 
     @Override
     protected void initData() {
@@ -73,6 +77,8 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
         dynamic_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         dynamicMoneyAdapter = new DynamicMoneyAdapter(this, collectList, sendList);
+
+        dynamicMoneyAdapter.setOnClick(this);
 
         dynamic_recycler.setAdapter(dynamicMoneyAdapter);
     }
@@ -237,7 +243,31 @@ public class MoneyDynamicActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    public void showDetails(OpenPackEntity.DataBean data) {
+
+        Intent intent = new Intent(this, PackDetailsActivity.class);
+        intent .putExtra("data", new Gson().toJson(data));
+
+        if (TABTYPE == SEND) {
+            intent.putExtra("state", "1");
+        }
+
+        startActivity(intent);
+
+    }
+
+    @Override
     public void onError(String error) {
+
+    }
+
+    @Override
+    public void dynamicClick(String id) {
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("type", TABTYPE + 1 + "");
+        presenter.obtainDetails(map);
 
     }
 }

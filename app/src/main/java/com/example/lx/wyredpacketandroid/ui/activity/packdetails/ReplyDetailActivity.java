@@ -66,9 +66,6 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
 
         pack_id = getIntent().getStringExtra("pack_id");
 
-        //设置标题
-        reply_detail_title.setText(getIntent().getStringExtra("count") + "条回复");
-
         reply_detail_refresh.autoLoadMore();
 
     }
@@ -131,6 +128,8 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
 
         if (state) {
             state = false;
+            //设置标题
+            reply_detail_title.setText(data.getReturnCount() + "条回复");
             initInfo(data.getInfo());
         }
 
@@ -217,11 +216,10 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    public static void StartReplyDetailActivity(Context context,String pid,String pack_id,String count) {
+    public static void StartReplyDetailActivity(Context context,String pid,String pack_id) {
 
         context.startActivity(new Intent(context, ReplyDetailActivity.class)
                 .putExtra("pid", pid)
-                .putExtra("pack_id", pack_id)
-                .putExtra("count", count));
+                .putExtra("pack_id", pack_id));
     }
 }

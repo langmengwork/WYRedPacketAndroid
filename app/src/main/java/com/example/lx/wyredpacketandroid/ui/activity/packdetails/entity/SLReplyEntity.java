@@ -8,7 +8,7 @@ public class SLReplyEntity {
     /**
      * err_code : 200
      * return_msg : success
-     * data : {"info":{"id":1,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言","created_at":"6小时前"},"list":[{"id":2,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言回复","created_at":"6小时前"}]}
+     * data : {"returnCount":1,"info":{"id":1,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言","created_at":"6小时前"},"list":[{"id":2,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言回复","created_at":"6小时前"}]}
      */
 
     private String err_code;
@@ -41,12 +41,22 @@ public class SLReplyEntity {
 
     public static class DataBean {
         /**
+         * returnCount : 1
          * info : {"id":1,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言","created_at":"6小时前"}
          * list : [{"id":2,"uid":1000000,"name":"测试","headimgurl":"https://tongchenghongbao.yaxiangame.com/style/images/yuzhou.jpg","content":"测试留言回复","created_at":"6小时前"}]
          */
 
+        private int returnCount;
         private InfoBean info;
         private List<ListBean> list;
+
+        public int getReturnCount() {
+            return returnCount;
+        }
+
+        public void setReturnCount(int returnCount) {
+            this.returnCount = returnCount;
+        }
 
         public InfoBean getInfo() {
             return info;

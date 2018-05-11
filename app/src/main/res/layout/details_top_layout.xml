@@ -1,143 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/details_title"
-        />
+        android:background="@drawable/details_title" />
 
     <TextView
         android:id="@+id/details_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/details_title"
-        android:textSize="36px"
-        android:textColor="@color/color_FFFFFF"
-        android:layout_marginTop="40px"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="40px"
+        android:text="@string/details_title"
+        android:textColor="@color/color_FFFFFF"
+        android:textSize="36px" />
 
     <ImageView
         android:id="@+id/details_icon"
         android:layout_width="112px"
         android:layout_height="112px"
-        android:background="@drawable/open_pack_icon"
         android:layout_below="@id/details_title"
-        android:layout_marginTop="50px"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="50px"
+        android:background="@drawable/open_pack_icon" />
 
     <TextView
         android:id="@+id/details_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="平台红包"
-        android:textSize="30px"
-        android:textColor="@color/color_333333"
-        android:layout_marginTop="20px"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/details_icon"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20px"
+        android:text="平台红包"
+        android:textColor="@color/color_333333"
+        android:textSize="30px" />
 
     <TextView
         android:id="@+id/details_region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/details_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"
+        android:layout_toRightOf="@id/details_name"
         android:background="@drawable/shape_fillet_fae3b7_15"
         android:text="全国"
-        android:textSize="22px"
         android:textColor="@color/color_D7593F"
-        android:layout_marginTop="30px"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@id/details_name"
-        android:layout_alignBottom="@id/details_name"
-        />
+        android:textSize="22px" />
 
     <TextView
         android:id="@+id/details_money"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.080170"
-        android:textColor="@color/color_333333"
-        android:textSize="80px"
-        android:textStyle="bold"
         android:layout_below="@id/details_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10px"
-        />
+        android:text="0.080170"
+        android:textColor="@color/color_333333"
+        android:textSize="80px"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/details_shares"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/details_pap"
-        android:layout_toRightOf="@id/details_money"
         android:layout_alignTop="@id/details_money"
-        android:text="+.02027红包股"
-        android:textSize="22px"
-        android:textColor="@color/color_F9E1B5"
+        android:layout_toRightOf="@id/details_money"
+        android:background="@drawable/details_pap"
         android:gravity="center"
-        />
+        android:text="+.02027红包股"
+        android:textColor="@color/color_F9E1B5"
+        android:textSize="22px" />
 
     <TextView
         android:id="@+id/details_wallet"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="已存入钱包"
-        android:textColor="@color/color_606F95"
-        android:textSize="30px"
-        android:layout_marginTop="10px"
         android:layout_below="@id/details_money"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="10px"
+        android:text="已存入钱包"
+        android:textColor="@color/color_606F95"
+        android:textSize="30px" />
 
     <LinearLayout
         android:id="@+id/details_imags_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_below="@id/details_wallet"
         android:layout_centerHorizontal="true"
-         android:layout_below="@id/details_wallet"
         android:layout_marginTop="20px"
-        >
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/details_imgs_recycle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         <TextView
             android:id="@+id/details_receive_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="…12000000+人领取"
-            />
+            android:text="…12000000+人领取" />
 
     </LinearLayout>
 
-    <ViewStub
+    <LinearLayout
         android:id="@+id/rb_show_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout="@layout/details_rb_show"
         android:layout_below="@id/details_imags_layout"
         android:layout_marginTop="25px"
-        />
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <ViewStub
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20px"
+            android:paddingLeft="40px"
+            android:paddingRight="40px"
+            android:paddingTop="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="TA想给大家说"
+                android:textColor="@color/color_333333"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/rb_show_like_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="5"
+                android:textColor="@color/color_666666"
+                android:textSize="30px" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10px"
+                android:layout_toLeftOf="@id/rb_show_like_num"
+                android:background="@drawable/like_noclick" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line" />
+
+        <TextView
+            android:id="@+id/rb_show_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:text="每天都是好心情"
+            android:textColor="@color/color_666666"
+            android:textSize="28px" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rb_show_imags"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="40px"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:id="@+id/bl_show_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout="@layout/details_bl_show"
-        android:layout_below="@id/details_imags_layout"
-        android:layout_marginTop="25px"
-        />
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/bl_show_img"
+            android:layout_width="700px"
+            android:layout_height="700px"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/open_pack_icon" />
+
+        <TextView
+            android:id="@+id/bl_show_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/bl_show_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50px"
+            android:text="祝福@@@@@@@@@@@"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="30px" />
+
+    </RelativeLayout>
+
+
+    <!--<include-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout="@layout/details_rb_show"-->
+
+    <!--/>-->
+
+
+    <!--<include-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout="@layout/details_bl_show"-->
+    <!--android:layout_below="@id/details_imags_layout"-->
+    <!--android:layout_marginTop="25px"-->
+    <!--/>-->
 
 </RelativeLayout>

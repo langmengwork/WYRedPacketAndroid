@@ -3,6 +3,7 @@ package com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.contra
 import com.example.lx.wyredpacketandroid.base.BaseModel;
 import com.example.lx.wyredpacketandroid.base.BasePresenter;
 import com.example.lx.wyredpacketandroid.base.BaseView;
+import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.CollectMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.SendMoneyEntity;
 
@@ -16,6 +17,8 @@ public interface PepContract {
 
         void shwoSend(SendMoneyEntity.DataBean data);
 
+        void showDetails(OpenPackEntity.DataBean data);
+
     }
 
     interface Model extends BaseModel {
@@ -23,6 +26,8 @@ public interface PepContract {
         void gainCollect(Presenter presenter, Map<String, String> map);
 
         void gainSend(Presenter presenter, Map<String, String> map);
+
+        void gainDetails(Presenter presenter, Map<String, String> map);
 
     }
 
@@ -35,6 +40,11 @@ public interface PepContract {
         public abstract void obtainSend(Map<String, String> map);
 
         public abstract void sendSend(SendMoneyEntity.DataBean data);
+
+        public abstract void obtainDetails(Map<String, String> map);
+
+        public abstract void sendDetails(OpenPackEntity.DataBean data);
+
 
     }
 

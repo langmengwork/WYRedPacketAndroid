@@ -1,5 +1,6 @@
 package com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.model;
 
+import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.CollectMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.entity.SendMoneyEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.personal_center.mvp.contract.PepContract;
@@ -77,4 +78,34 @@ public class PepModel implements PepContract.Model {
             }
         });
     }
+
+    @Override
+    public void gainDetails(final PepContract.Presenter presenter, Map<String, String> map) {
+
+        RetrofitUtil.instance().post(UrlUtil.PACKDETAIL, map, OpenPackEntity.class, new Observer() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object value) {
+
+                OpenPackEntity entity = (OpenPackEntity) value;
+
+                presenter.sendDetails(entity.getData());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtil.e("shibai"+e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
 }
