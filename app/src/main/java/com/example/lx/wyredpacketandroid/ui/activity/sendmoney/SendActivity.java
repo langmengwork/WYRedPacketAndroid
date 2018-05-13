@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -36,6 +35,7 @@ import com.example.lx.wyredpacketandroid.utils.FileUtils;
 import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.ToastUtil;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
+import com.example.lx.wyredpacketandroid.utils.customview.PasswordView;
 import com.example.lx.wyredpacketandroid.utils.glideutils.GlideRoundTransform;
 import com.example.lx.wyredpacketandroid.utils.networkutil.UrlUtil;
 import com.example.lx.wyredpacketandroid.utils.recycleviewutil.SpaceItemDecoration;
@@ -46,8 +46,6 @@ import com.google.gson.Gson;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhihu.matisse.Matisse;
 
 import org.json.JSONException;
@@ -57,7 +55,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SendActivity extends BaseActivity implements View.OnClickListener, OnTabSelectListener,SendContract.View, CompoundButton.OnCheckedChangeListener {
+public class SendActivity extends BaseActivity implements View.OnClickListener, OnTabSelectListener,SendContract.View, CompoundButton.OnCheckedChangeListener, AddImgAdapter.onLiner {
     private TextView send_back;
     private TextView send_history;
     private CommonTabLayout send_tab;
@@ -92,6 +90,11 @@ public class SendActivity extends BaseActivity implements View.OnClickListener, 
     private String point;
     private String point_type = "1";
     private ArrayList<String> imags;
+    private PasswordView en_dialog_edit;
+    private TextView en_dialog_cancel;
+    private TextView en_dialog_confirm;
+    private Dialog en_dialog;
+
 
     @Override
     protected void initData() {
@@ -116,6 +119,7 @@ public class SendActivity extends BaseActivity implements View.OnClickListener, 
         send_add_img.addItemDecoration(new SpaceItemDecoration(20,CodeUtil.SPAC_ONE));
         mSelected = new ArrayList<>();
         addImgAdapter = new AddImgAdapter(this, mSelected, showFoot);
+        addImgAdapter.setOnLiner(this);
         send_add_img.setAdapter(addImgAdapter);
     }
 
@@ -242,6 +246,31 @@ public class SendActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.send_history:
 
                 startActivity(new Intent(this, RecordActivity.class));
+
+                break;
+
+            case R.id.en_dialog_confirm:
+
+                if (en_dialog_edit.getPassword().length() == 4 && en_dialog_edit.getPassword() != null) {
+                    send_encryption_modify.setVisibility(View.VISIBLE);
+                    send_encryption_tv.setVisibility(View.VISIBLE);
+                    send_encryption_tv.setText(en_dialog_edit.getPassword());
+                    en_dialog.cancel();
+                } else {
+                    ToastUtil.showShortToast("请输入密码");
+                }
+
+                break;
+            case R.id.en_dialog_cancel:
+
+                en_dialog.cancel();
+
+                send_check_encryption.setChecked(false);
+
+                break;
+            case R.id.send_encryption_modify:
+
+                showModify();
 
                 break;
         }
@@ -445,13 +474,55 @@ public class SendActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+
         if (isChecked) {
-            send_encryption_modify.setVisibility(View.VISIBLE);
-            send_encryption_tv.setVisibility(View.VISIBLE);
+
+            showModify();
         } else {
             send_encryption_modify.setVisibility(View.GONE);
             send_encryption_tv.setVisibility(View.GONE);
         }
 
+    }
+
+    private void showModify() {
+
+        en_dialog = new Dialog(this, R.style.CustomDialog);
+        View view = LayoutInflater.from(this).inflate(R.layout.redpacket_pass, null);
+        en_dialog_edit = view.findViewById(R.id.en_dialog_edit);
+        en_dialog_cancel = view.findViewById(R.id.en_dialog_cancel);
+        en_dialog_cancel.setOnClickListener(this);
+        en_dialog_confirm = view.findViewById(R.id.en_dialog_confirm);
+        en_dialog_confirm.setOnClickListener(this);
+        en_dialog.setContentView(view);
+        en_dialog.setCancelable(false);
+        en_dialog.show();
+
+    }
+
+    @Override
+    public void onImgClick(final int position) {
+
+        final Dialog imgDialog = new Dialog(this, R.style.CustomDialog);
+        View view = LayoutInflater.from(this).inflate(R.layout.deleter_imag_dialog, null);
+        TextView deleter_imag_cancel = view.findViewById(R.id.deleter_imag_cancel);
+        deleter_imag_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgDialog.cancel();
+            }
+        });
+        TextView deleter_imag_confirm = view.findViewById(R.id.deleter_imag_confirm);
+        deleter_imag_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mSelected.remove(position);
+                addImgAdapter.notifyDataSetChanged();
+                imgDialog.cancel();
+            }
+        });
+        imgDialog.setContentView(view);
+        imgDialog.show();
     }
 }

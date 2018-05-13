@@ -78,7 +78,10 @@
         <activity android:name=".ui.activity.personal_center.MoneyDynamicActivity" />
         <activity android:name=".ui.activity.record.RecordActivity" />
         <activity android:name=".ui.activity.news.NewsActivity" />
-        <activity android:name=".ui.activity.wallet.WalletActivity"></activity>
+        <activity android:name=".ui.activity.wallet.WalletActivity">
+
+        </activity>
+        <activity android:name=".ui.activity.wallet.PutForwardActivity" />
     </application>
 
 </manifest>

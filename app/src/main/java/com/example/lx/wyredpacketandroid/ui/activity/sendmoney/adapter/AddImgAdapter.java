@@ -14,15 +14,12 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.MainApplication;
-import com.example.lx.wyredpacketandroid.ui.activity.MainActivity;
 import com.example.lx.wyredpacketandroid.utils.CodeUtil;
-import com.example.lx.wyredpacketandroid.utils.ToastUtil;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +30,16 @@ public class AddImgAdapter extends RecyclerView.Adapter {
     private boolean showFoot;
     private static int TYPEONE = 0;
     private static int TYPETWO = 1;
+    private onLiner liner;
+
+    public void setOnLiner(onLiner liner){
+        this.liner = liner;
+    }
+
+    public interface onLiner{
+
+        void onImgClick(int position);
+    }
 
     public AddImgAdapter(Context context, List<Uri> list, boolean showFoot) {
 
@@ -59,7 +66,7 @@ public class AddImgAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
         if (list.size() == position || list.size() <= 0) {
 
@@ -88,6 +95,15 @@ public class AddImgAdapter extends RecyclerView.Adapter {
 
             MyViewHolder ho = (MyViewHolder) holder;
             Glide.with(context).load(list.get(position)).into(ho.imageView);
+            ho.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (liner != null) {
+                        liner.onImgClick(position);
+
+                    }
+                }
+            });
 //            ho.imageView.setImageURI(list.get(position));
         }
     }

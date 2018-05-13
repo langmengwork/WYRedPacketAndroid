@@ -1,7 +1,7 @@
 package com.example.lx.wyredpacketandroid.ui.activity.wallet;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +13,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +94,14 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+
+            case R.id.wallet_extract:
+
+                startActivity(new Intent(this,PutForwardActivity.class));
+
+                break;
+        }
     }
 
 }

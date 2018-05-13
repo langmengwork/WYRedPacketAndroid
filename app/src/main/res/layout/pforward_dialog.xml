@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/shape_fillet_ffffff_10"
+        >
+
+        <ImageView
+            android:id="@+id/pforward_dialog_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pforward_dialog_icon"
+            />
+
+
+        <TextView
+            android:id="@+id/pforward_dialog_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现申请已提交"
+            android:textColor="@color/color_333333"
+            android:textSize="18dp"
+            android:layout_below="@id/pforward_dialog_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            />
+
+        <TextView
+            android:id="@+id/pforward_dialog_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现余额￥1.40,(24小时内到账)"
+            android:textColor="@color/color_333333"
+            android:textSize="13dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/pforward_dialog_state"
+            />
+
+        <Button
+            android:id="@+id/pforward_dialog_bt"
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:background="@drawable/shape_fillet_db5443_30"
+            android:text="完成"
+            android:textColor="@color/colorWhite"
+            android:textSize="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/pforward_dialog_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="25dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
