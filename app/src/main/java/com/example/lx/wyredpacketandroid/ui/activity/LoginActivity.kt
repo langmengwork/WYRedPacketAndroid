@@ -70,7 +70,7 @@ class LoginActivity : BaseActivity() {
             ToastUtil.showShortToast("您还未安装微信客户端")
             return;
         }
-        var mas = WXTextObject.TYPE_APPBRAND
+        val mas = WXTextObject.TYPE_APPBRAND
         var req =  SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "diandi_wx_login";
@@ -103,7 +103,7 @@ class LoginActivity : BaseActivity() {
 
         spannableString.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-                Toast.makeText(this@LoginActivity, "用户协议", Toast.LENGTH_SHORT).show()
+                startActivity(intent.setClass(this@LoginActivity,WebActivity::class.java))
             }
         }, 7, 11, Spanned.SPAN_COMPOSING)
 

@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -117,6 +118,17 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
 
                 reply_detail_editer.setText("");
 
+                View view = getWindow().peekDecorView();
+                if (view != null) {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+                break;
+            case R.id.reply_detail_back:
+
+                finish();
+
                 break;
         }
     }
@@ -157,6 +169,7 @@ public class ReplyDetailActivity extends BaseActivity implements View.OnClickLis
         if (msg.equals("成功")) {
             page = 0;
             list.clear();
+            state = true;
             reply_detail_refresh.setNoMoreData(false);
             reply_detail_refresh.autoLoadMore();
         } else {

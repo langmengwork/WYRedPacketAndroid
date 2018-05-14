@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -34,10 +36,16 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.lx.wyredpacketandroid.R;
+import com.example.lx.wyredpacketandroid.base.MainApplication;
 import com.example.lx.wyredpacketandroid.entity.GetPackEntity;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.mvp.contract.MainContract;
+import com.example.lx.wyredpacketandroid.mvp.presenter.MainPresenter;
 import com.example.lx.wyredpacketandroid.mvp.presenter.MapPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.news.NewsActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.PackDetailsActivity;
@@ -52,14 +60,15 @@ import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.ToastUtil;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
 import com.example.lx.wyredpacketandroid.utils.customview.OpenDialogUtil;
+import com.example.lx.wyredpacketandroid.utils.glideutils.GlideCircleTransform;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AMap.OnMyLocationChangeListener, View.OnClickListener,MainContract.mapView, AMap.OnMarkerClickListener, OpenDialogUtil.openListner {
 
-    private static final String TAG = "Tag";
     private MapView mMapView = null;
     private MyLocationStyle myLocationStyle;
     private AMap aMap;
@@ -87,11 +96,15 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     private List<GetPackEntity.DataBean.ListBean> markerList;
     private Bitmap makerBitmap;
     private TextView map_title_money;
+    private ArrayList<Marker> markers = new ArrayList<>();
+    private int mposition = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //添加activity管理
+        MainApplication.activityList.add(this);
 
         initView();
 
@@ -102,14 +115,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
 
         initMap(savedInstanceState);
 
-        initLocation();
-
-        findViewById(R.id.map_send_money).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SendActivity.class));
-            }
-        });
+//        initLocation();
 
     }
 
@@ -172,11 +178,6 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
 
     }
 
-    private void drawMaker(LatLng latLng) {
-
-
-    }
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
@@ -229,12 +230,40 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         myLocationStyle.radiusFillColor(Color.TRANSPARENT);//设置定位蓝点精度圆圈的填充颜色的方法。
 
         //        自定义定位点
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
-        BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
-        myLocationStyle.myLocationIcon(bitmapDescriptor);
+        // TODO: 2018/5/14 用户头像自定义
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
 
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+//        BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
+//        myLocationStyle.myLocationIcon(bitmapDescriptor);
 
+//        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+
+        //设置用户蓝点
+        initUserIcon();
+
+    }
+
+    private void initUserIcon() {
+
+        final View iconview = LayoutInflater.from(this).inflate(R.layout.location_icon_layout, null);
+        ImageView location_icon_img = iconview.findViewById(R.id.location_icon_img);
+        LogUtil.e("用户头像"+UserInfoUtil.instance().getHeadimgurl());
+        Glide.with(this).load(UserInfoUtil.instance().getHeadimgurl()).into(new GlideDrawableImageViewTarget(location_icon_img){
+
+            //glide加载监听
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
+                super.onResourceReady(resource, animation);
+
+                LogUtil.e("加载完毕");
+
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(iconview);
+                myLocationStyle.myLocationIcon(bitmapDescriptor);
+
+                aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+
+            }
+        });
     }
 
     private void initMap(Bundle savedInstanceState) {
@@ -289,6 +318,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
         map_bottombar = (RelativeLayout) findViewById(R.id.map_bottombar);
         mapView = (MapView) findViewById(R.id.mapView);
         map_send_money = (LinearLayout) findViewById(R.id.map_send_money);
+        map_send_money.setOnClickListener(this);
         map_expand_img = (ImageView) findViewById(R.id.map_expand_img);
         map_personal_center = (ImageView) findViewById(R.id.map_personal_center);
         map_personal_center.setOnClickListener(this);
@@ -335,7 +365,25 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
 
             case R.id.map_refresh:
 
+                //关闭刷新
+                map_refresh.setClickable(false);
+
+                //用于初始化常规值
+                mposition += markers.size();
+
+                for (Marker marker : markers) {
+                    marker.remove();
+                }
+
+                markers.clear();
+
                 getPack();
+
+                break;
+
+            case R.id.map_send_money:
+
+                startActivity(new Intent(MainActivity.this, SendActivity.class));
 
                 break;
         }
@@ -344,14 +392,16 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
     @Override
     public void onError(String error) {
 
+        //获取用户信息
+        presenter.obtainUserInfo();
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-        int position = Integer.parseInt(marker.getId().substring(marker.getId().length()- 1))-2;
+        int position = Integer.parseInt(marker.getId().replace("Marker",""))-mposition;
 
-        LogUtil.e("position"+position);
+        LogUtil.e("size="+markerList.size()+"索引："+marker.getId()+","+position+","+mposition);
         if (position >= 0) {
 
             OpenDialogUtil instance = OpenDialogUtil.instance();
@@ -362,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
 
         }
 
-        return false;
+        return true;
     }
 
     @Override
@@ -425,11 +475,21 @@ public class MainActivity extends AppCompatActivity implements AMap.OnMyLocation
             // 将Marker设置为贴地显示，可以双指下拉地图查看效果
             markerOption.setFlat(true);//设置marker平贴地图效果
 
-            aMap.addMarker(markerOption);
+            markers.add(aMap.addMarker(markerOption));
 
             aMap.setOnMarkerClickListener(this);
 
+            //开启刷新
+            map_refresh.setClickable(true);
         }
     }
 
+    @Override
+    public void initUser() {
+
+        distance = UserInfoUtil.instance().getDistance();
+
+        initLocation();
+
+    }
 }

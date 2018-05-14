@@ -14,6 +14,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainApplication.activity = this;
+        MainApplication.activityList.add(this);
 
         setContentView(initLayout());
 

@@ -1,8 +1,10 @@
 package com.example.lx.wyredpacketandroid.ui.activity.packdetails;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +31,8 @@ import com.bumptech.glide.Glide;
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
+import com.example.lx.wyredpacketandroid.mvp.presenter.MainPresenter;
+import com.example.lx.wyredpacketandroid.ui.activity.StartActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.DetailsImgsAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.DetailsRbShowAdapter;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.adapter.ReplyAdapter;
@@ -50,7 +55,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener, DetailsContract.View, TextView.OnEditorActionListener, OnRefreshListener {
+public class PackDetailsActivity extends BaseActivity implements View.OnClickListener, OnLoadMoreListener, DetailsContract.View, TextView.OnEditorActionListener {
 
 
     private TextView details_title;
@@ -73,13 +78,16 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     private int page = 0;
     private String type = "2";
     private boolean moneystate = true;
-    private TextView bl_show_content;
-    private ImageView bl_show_img;
+    private TextView bl_show_content,details_timer_back;
+    private ImageView bl_show_img,details_back;
     private TextView rb_show_content;
     private RecyclerView rb_show_imags;
     private TextView rb_show_like_num;
     private LinearLayout rb_show_layout;
     private RelativeLayout bl_show_layout;
+    private CountDownTimer timer;
+    private int timers = 5;
+    private boolean backState = false;
 
     @Override
     protected void initData() {
@@ -92,6 +100,11 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
         if (getIntent().getStringExtra("state") != null) {
             moneystate = false;
+        }
+
+        if (detailsEntity.getType().equals("1") || detailsEntity.getType().equals("4")) {
+
+            startTimer();
         }
 
         //设置红包icon
@@ -135,7 +148,7 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
 
         } else if (detailsEntity.getType().equals("2")) {
 
-//            //祝福show
+//          //祝福show
             bl_show_layout.setVisibility(View.GONE);
             initBlView();
 
@@ -145,8 +158,35 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             rb_show_layout.setVisibility(View.VISIBLE);
             initRbView();
         }
+    }
 
-        reply_refresh.autoLoadMore();
+    private void startTimer() {
+
+        backState = true;
+        details_back.setVisibility(View.GONE);
+        details_timer_back.setVisibility(View.VISIBLE);
+        details_timer_back.setText(timers+"s");
+
+        //计时间隔
+        timer = new CountDownTimer(5000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //计时间隔
+                timers -= 1;
+                details_timer_back.setText(timers+"s");
+            }
+
+            @Override
+            public void onFinish() {
+
+                details_timer_back.setVisibility(View.GONE);
+                details_back.setVisibility(View.VISIBLE);
+                timer.cancel();
+                backState = false;
+            }
+        }.start();
+
     }
 
     private void initRbView() {
@@ -254,9 +294,12 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
         reply_bar.setOnClickListener(this);
         reply_refresh = findViewById(R.id.reply_refresh);
         reply_refresh.setOnLoadMoreListener(this);
-        reply_refresh.setOnRefreshListener(this);
+        reply_refresh.setEnableRefresh(false);
         rb_show_layout = findViewById(R.id.rb_show_layout);
         bl_show_layout = findViewById(R.id.bl_show_layout);
+        details_back = findViewById(R.id.details_back);
+        details_back.setOnClickListener(this);
+        details_timer_back = findViewById(R.id.details_timer_back);
 
     }
 
@@ -264,7 +307,9 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
     protected void initResume() {
         super.initResume();
 
-        reply_refresh.autoRefresh();
+        page = 0;
+        replyList.clear();
+        reply_refresh.autoLoadMore();
     }
 
     @Override
@@ -298,6 +343,12 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             case R.id.details_imgs_recycle:
 
                 ReceiveDetailsActivity.startReceiveDetailsActivity(this,detailsEntity.getPack_id());
+
+                break;
+
+            case R.id.details_back:
+
+                finish();
 
                 break;
         }
@@ -349,6 +400,8 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             initReply();
         } else {
 
+            LogUtil.e("到这了吗");
+
             replyAdapter.notifyDataSetChanged();
         }
 
@@ -393,24 +446,28 @@ public class PackDetailsActivity extends BaseActivity implements View.OnClickLis
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", UserInfoUtil.instance().getId() + "");
             map.put("pack_id", detailsEntity.getPack_id());
-//            map.put("pid", );
             map.put("content", v.getText().toString());
             presenter.obtainAddReply(map);
 
             v.setText("");
+
+            View view = getWindow().peekDecorView();
+            if (view != null) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
         }
         return false;
     }
 
     @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        page = 1;
-        replyList.clear();
-        HashMap<String, String> map = new HashMap<>();
-        map.put("pack_id", detailsEntity.getPack_id() + "");
-        map.put("page", page + "");
-        presenter.obtainLoadMore(map);
+            if (backState) {
+                return true;
+            }else {
+                return super.onKeyDown(keyCode, event);
+            }
     }
-
 }

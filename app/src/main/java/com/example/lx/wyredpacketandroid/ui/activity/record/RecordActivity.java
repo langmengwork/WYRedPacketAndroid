@@ -1,6 +1,8 @@
 package com.example.lx.wyredpacketandroid.ui.activity.record;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -84,6 +86,15 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
         presenter = new RecordPresenter(this);
 
+        if (getIntent().getIntExtra("type", 0) != 0) {
+
+            type = getIntent().getIntExtra("type", 0);
+            if (type == 5) {
+                record_type_check.setText("提现记录");
+                record_type_tv.setText("提现记录");
+            }
+        }
+
         initRecycler();
 
         initPopUpWindow();
@@ -126,8 +137,14 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
         popList.add(new RecordPopEntity("红包股价值", false, 4));
         popList.add(new RecordPopEntity("红包股数", false, 2));
         popList.add(new RecordPopEntity("红包股价", false, 3));
-        popList.add(new RecordPopEntity("发红包", true, 1));
+        popList.add(new RecordPopEntity("发红包", false, 1));
         popList.add(new RecordPopEntity("提现记录", false, 5));
+
+        for (RecordPopEntity recordPopEntity : popList) {
+            if (recordPopEntity.getType() == type) {
+                recordPopEntity.setState(true);
+            }
+        }
 
         View view = LayoutInflater.from(this).inflate(R.layout.record_popup, null);
 
@@ -310,6 +327,7 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
         if (state) {
             state = false;
+            LogUtil.e("股价"+fEntity.getTotalStockValue());
             record_type_num.setText(fEntity.getTotalStockValue() + "");
         }
 
@@ -449,5 +467,10 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
         refreshData();
 
+    }
+
+    public static void StartRecordActivity(Context context,int type) {
+
+        context.startActivity(new Intent(context,RecordActivity.class).putExtra("type",type));
     }
 }

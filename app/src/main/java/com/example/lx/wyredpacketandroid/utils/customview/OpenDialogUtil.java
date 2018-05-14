@@ -17,6 +17,7 @@ import com.example.lx.wyredpacketandroid.mvp.contract.MainContract;
 import com.example.lx.wyredpacketandroid.mvp.presenter.MainPresenter;
 import com.example.lx.wyredpacketandroid.mvp.presenter.OpenPresenter;
 import com.example.lx.wyredpacketandroid.ui.activity.StartActivity;
+import com.example.lx.wyredpacketandroid.utils.DateUtil;
 import com.example.lx.wyredpacketandroid.utils.LogUtil;
 import com.example.lx.wyredpacketandroid.utils.ToastUtil;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
@@ -82,9 +83,9 @@ public class OpenDialogUtil implements View.OnClickListener, PasswordView.Passwo
 
             open_encr_title_dialog.setText(entity.getOwner());
 
-//            DateUtil dateUtil = new DateUtil();
-//            String s = dateUtil.timesOne(entity.getCreated_at());
-//            LogUtil.e(s+"111111");
+            DateUtil dateUtil = new DateUtil();
+            String s = dateUtil.timesOne(entity.getCreated_at());
+            LogUtil.e(s+"------------");
 
         } else {
 

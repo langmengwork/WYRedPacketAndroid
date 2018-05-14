@@ -23,6 +23,8 @@ public interface MainContract {
 
         void showView(GetPackEntity.DataBean data);
 
+        void initUser();
+
     }
 
     interface openView extends BaseView {
@@ -66,10 +68,11 @@ public interface MainContract {
 
     }
 
-
     abstract class MapPresenter extends BasePresenter<mapView, Model> {
 
         public abstract void obtainUserInfo();
+
+        public abstract void sendUserInfo(boolean state);
 
         public abstract void obtainGetPack(Map<String,String> map);
 

@@ -22,6 +22,18 @@ public class MapPresenter extends MainContract.MapPresenter {
     }
 
     @Override
+    public void sendUserInfo(boolean state) {
+
+        if (state) {
+
+            mView.initUser();
+        } else {
+
+            mView.onError("");
+        }
+    }
+
+    @Override
     public void obtainGetPack(Map<String, String> map) {
 
         mModel.gainGetPack(this,map);

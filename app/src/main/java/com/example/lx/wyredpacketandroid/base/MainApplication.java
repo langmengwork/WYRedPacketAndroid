@@ -21,12 +21,15 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.util.ArrayList;
+
 public class MainApplication extends Application {
 
     //定位当前activity
     public static Activity activity;
     public static IWXAPI mWxApi;
     public static UploadManager uploadManager;
+    public static ArrayList<Activity> activityList;
 
     @Override
     public void onCreate() {
@@ -37,6 +40,9 @@ public class MainApplication extends Application {
 
         //初始化七牛云
         initQiniuyun();
+
+        activityList = new ArrayList<>();
+
     }
 
     private void initQiniuyun() {
@@ -58,6 +64,13 @@ public class MainApplication extends Application {
         mWxApi = WXAPIFactory.createWXAPI(this, CodeUtil.APP_ID, false);
         // 将该app注册到微信
         mWxApi.registerApp(CodeUtil.APP_ID);
+    }
+
+    public static void removeAll(){
+
+        for (Activity activity1 : activityList) {
+            activity1.finish();
+        }
     }
 
     static {

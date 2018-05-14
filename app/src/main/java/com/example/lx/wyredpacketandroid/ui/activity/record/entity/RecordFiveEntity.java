@@ -73,7 +73,7 @@ public class RecordFiveEntity {
              */
 
             private String created_at;
-            private int money;
+            private double money;
             private int status;
             private String remark;
 
@@ -85,11 +85,11 @@ public class RecordFiveEntity {
                 this.created_at = created_at;
             }
 
-            public int getMoney() {
+            public double getMoney() {
                 return money;
             }
 
-            public void setMoney(int money) {
+            public void setMoney(double money) {
                 this.money = money;
             }
 

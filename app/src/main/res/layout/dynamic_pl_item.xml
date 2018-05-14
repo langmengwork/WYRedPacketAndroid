@@ -9,11 +9,11 @@
         android:id="@+id/dynamic_pl_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:background="@drawable/open_pack_icon"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_centerVertical="true"
         android:layout_marginRight="30dp"
+        android:scaleType="fitXY"
         />
 
     <TextView

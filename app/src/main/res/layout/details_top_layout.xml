@@ -19,6 +19,27 @@
         android:textSize="36px" />
 
     <ImageView
+        android:id="@+id/details_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:background="@drawable/back_white"
+        android:layout_marginLeft="30px"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/details_timer_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:layout_marginLeft="30px"
+        android:text="1s"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        />
+
+    <ImageView
         android:id="@+id/details_icon"
         android:layout_width="112px"
         android:layout_height="112px"
@@ -120,7 +141,7 @@
         android:layout_marginTop="25px"
         android:background="@color/colorWhite"
         android:orientation="vertical"
-        android:visibility="gone">
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -136,7 +157,9 @@
                 android:layout_centerVertical="true"
                 android:text="TA想给大家说"
                 android:textColor="@color/color_333333"
-                android:textSize="35px" />
+                android:textSize="35px"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/rb_show_like_num"
@@ -154,7 +177,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10px"
                 android:layout_toLeftOf="@id/rb_show_like_num"
-                android:background="@drawable/like_noclick" />
+                android:background="@drawable/like_icon" />
 
         </RelativeLayout>
 
@@ -169,6 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40px"
             android:layout_marginRight="40px"
+            android:layout_marginTop="20px"
             android:text="每天都是好心情"
             android:textColor="@color/color_666666"
             android:textSize="28px" />
@@ -177,7 +201,11 @@
             android:id="@+id/rb_show_imags"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="40px"></android.support.v7.widget.RecyclerView>
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="30px"
+            android:layout_marginBottom="20px"
+            ></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

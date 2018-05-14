@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.base.BaseActivity;
+import com.example.lx.wyredpacketandroid.base.MainApplication;
+import com.example.lx.wyredpacketandroid.ui.activity.LoginActivity;
+import com.example.lx.wyredpacketandroid.utils.GreendaoUtil;
 import com.example.lx.wyredpacketandroid.utils.UserInfoUtil;
 import com.example.lx.wyredpacketandroid.utils.glideutils.GlideRoundTransform;
 
@@ -32,7 +35,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     protected void initData() {
 
         //设置用户头像
-        Glide.with(this).load(UserInfoUtil.instance().getHeadimgurl()).transform(new GlideRoundTransform(this, 24)).into(pep_icon);
+        Glide.with(this).load(UserInfoUtil.instance().getHeadimgurl()).transform(new GlideRoundTransform(this, 10)).into(pep_icon);
 
         //设置用户名称
         pep_name.setText(UserInfoUtil.instance().getNickname());
@@ -102,6 +105,12 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
                 break;
 
             case R.id.pep_exit_account:
+
+                GreendaoUtil.instance().exitLogin();
+
+                MainApplication.removeAll();
+
+                startActivity(new Intent(this, LoginActivity.class));
 
                 break;
         }

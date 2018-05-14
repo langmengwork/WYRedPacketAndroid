@@ -70,4 +70,16 @@ public class UrlUtil {
     //获取红包详情
     public static final String PACKDETAIL = "packDetail";
 
+    //钱包
+    public static final String USERWALLET = "userwallet";
+
+    //提现页
+    public static final String TIXIANDATA = "tixianData";
+
+    //请求提现
+    public static final String TIXIAN = "tixian";
+
+    //用户协议
+    public static final String USERPROTOCOL = "https://tongchenghongbao.yaxiangame.com/protocol.html";
+
 }

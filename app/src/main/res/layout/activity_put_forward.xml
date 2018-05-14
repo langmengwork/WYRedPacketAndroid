@@ -97,6 +97,9 @@
                 android:focusable="true"
                 android:layout_toLeftOf="@id/pforward_money_tv"
                 android:background="@null"
+                android:digits="0123456789."
+                android:maxLines="1"
+                android:inputType="number"
                 />
 
         </RelativeLayout>
@@ -110,24 +113,52 @@
             android:background="@color/color_line" />
 
 
-        <TextView
-            android:id="@+id/pforward_num_tv"
+        <LinearLayout
+            android:id="@+id/pforward_num_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_below="@id/pforward_line"
-            android:text="我的红包股数 20.0260，全部提现"
-            android:textColor="#ff888888"
             android:layout_marginTop="30px"
-            android:textSize="26px" />
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的红包股数 "
+                android:textColor="#ff888888"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/pforward_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff888888"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/pforward_num_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="，全部提现"
+                android:textSize="15dp"
+                android:textColor="@color/color_6C7BBE"
+                />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/pforward_tips_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pforward_num_tv"
+            android:layout_below="@id/pforward_num_layout"
             android:text="提现总股价不得低于1元，24小时内到账"
             android:textColor="#ff888888"
-            android:textSize="26px"
+            android:textSize="13dp"
             />
 
 

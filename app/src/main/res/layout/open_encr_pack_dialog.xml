@@ -26,7 +26,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
-            android:background="@drawable/open_pack_icon"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="33dp"
             />

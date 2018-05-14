@@ -16,6 +16,7 @@ import com.example.lx.wyredpacketandroid.R;
 import com.example.lx.wyredpacketandroid.entity.OpenPackEntity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.ReplyDetailActivity;
 import com.example.lx.wyredpacketandroid.ui.activity.packdetails.entity.MessageListEntity;
+import com.example.lx.wyredpacketandroid.utils.LogUtil;
 
 import java.util.List;
 
@@ -78,13 +79,15 @@ public class ReplyAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onClick(View v) {
                         ReplyDetailActivity.StartReplyDetailActivity(context,
-                                list.get(position).getId()+"",
+                                list.get(position).getId() + "",
                                 pack_id);
                     }
                 });
             } else {
                 ho.reply_sl_content_item.setText("：" + list.get(position).getReturnMessage().getContent());
             }
+        } else {
+            ho.reply_sl_layout.setVisibility(View.GONE);
         }
     }
 

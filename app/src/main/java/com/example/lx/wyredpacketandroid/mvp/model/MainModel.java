@@ -192,7 +192,7 @@ public class MainModel implements MainContract.Model{
                         map.put("province",  entity.getProvince());
                         map.put("city",  entity.getCity());
 
-                        gainInfo(map);
+                        gainInfo(map,presenter);
                     }
 
                 }
@@ -300,7 +300,7 @@ public class MainModel implements MainContract.Model{
         });
     }
 
-    public void gainInfo(HashMap<String, String> map){
+    public void gainInfo(HashMap<String, String> map, final MainContract.MapPresenter presenter){
 
         RetrofitUtil.instance().post(UrlUtil.USERINFO, map, UserInfoEntity.class, new Observer() {
             @Override
@@ -327,6 +327,11 @@ public class MainModel implements MainContract.Model{
                     instance.setProvince(data.getProvince());
                     instance.setSex(data.getSex());
 
+                    presenter.sendUserInfo(true);
+
+                } else {
+
+                    presenter.sendUserInfo(false);
                 }
 
             }
@@ -334,7 +339,7 @@ public class MainModel implements MainContract.Model{
             @Override
             public void onError(Throwable e) {
 
-                LogUtil.e("竟然失败了？"+e.toString());
+                presenter.sendUserInfo(false);
             }
 
             @Override
